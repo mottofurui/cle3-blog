@@ -22,8 +22,14 @@
     padding: 2vw;
 }
 
-.restaurant {
+#restaurant {
     border: solid black 2px;
     width: 90vw;
     padding: 10px;
+    transition: all 1s ease;
+}
+
+#restaurant:hover {
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 0.4);
+    transform:scale(1.05);
 }
