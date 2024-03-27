@@ -40,3 +40,14 @@
     width: 90vw;
     height: 7vh;
 }
+
+#rating-stars-container {
+    display: grid;
+    width: 100px;
+}
+
+.rating-stars {
+    grid-column: 1;
+    grid-row: 1;
+    height: 5vh;
+}

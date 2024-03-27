@@ -5,10 +5,12 @@ session_start();
 
 require_once 'includes/reviews-database.php';
 
+$ratingNumbers = [];
+
 // als er op submit is gedrukt
 if (isset($_POST['submit'])) {
 
-    $errors= array();
+    $errors = array();
 
     //als de data valide is
     $name = mysqli_real_escape_string($db, $_POST['name']);
@@ -56,6 +58,20 @@ $reviews = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $reviews[] = $row;
 }
+
+// push de rating in array ratingnumbers
+foreach ($reviews as $reviewRating) {
+    $ratingNumbers[] = $reviewRating['rating'];
+}
+
+$maxCount = 0;
+$count = 0;
+foreach ($ratingNumbers as $ratingNumber) {
+    $maxCount += $ratingNumber;
+    $count++;
+}
+
+$roundedGrade = round($maxCount / $count, 1);
 // Close the connection
 mysqli_close($db)
 
@@ -71,42 +87,50 @@ mysqli_close($db)
 </head>
 
 <body>
-    <form action="" method="post">
+<form action="" method="post">
 
-        <label for="name">Naam</label>
-        <input id="name" name="name" value="<?= isset($name) ? $name : '' ?>">
-        <?= isset($errors['name']) ? $errors['name'] : '' ?>
+    <label for="name">Naam</label>
+    <input id="name" name="name" value="<?= isset($name) ? $name : '' ?>">
+    <?= isset($errors['name']) ? $errors['name'] : '' ?>
 
-        <label for="title">Title</label>
-        <input id="title" name="title" value="<?= isset($title) ? $title : '' ?>">
-        <?= isset($errors['title']) ? $errors['title'] : '' ?>
+    <label for="title">Title</label>
+    <input id="title" name="title" value="<?= isset($title) ? $title : '' ?>">
+    <?= isset($errors['title']) ? $errors['title'] : '' ?>
 
-        <label for="review">Review</label>
-        <input id="review" name="review" value="<?= isset($review) ? $review : '' ?>">
-        <?= isset($errors['review']) ? $errors['review'] : '' ?>
+    <label for="review">Review</label>
+    <input id="review" name="review" value="<?= isset($review) ? $review : '' ?>">
+    <?= isset($errors['review']) ? $errors['review'] : '' ?>
 
-        <label for="rating">Rating</label>
-        <select class="input" id="rating" name="rating">
-            <option value="1">1 ster</option>
-            <option value="2">2 ster</option>
-            <option value="3">3 ster</option>
-            <option value="4">4 ster</option>
-            <option value="5">5 ster</option>
-        </select>
-        <?= isset($errors['rating']) ? $errors['rating'] : '' ?>
-
+    <label for="rating">Rating</label>
+    <select class="input" id="rating" name="rating">
+        <option value="5">5 ster</option>
+        <option value="4">4 ster</option>
+        <option value="3">3 ster</option>
+        <option value="2">2 ster</option>
+        <option value="1">1 ster</option>
+    </select>
 
 
-        <button type="submit" name="submit">Save</button>
-    </form>
-
-    <section>
-        <?php foreach ($reviews as $index => $review ) { ?>
-            <p><?= htmlentities($review['name']) ?></p>
-            <p><?= htmlentities($review['rating']) ?> ★</p>
-            <p><?= htmlentities($review['title']) ?></p>
-            <p><?= htmlentities($review['review']) ?></p>
-        <?php } ?>
-    </section>
+    <button type="submit" name="submit">Save</button>
+</form>
+<section>
+    <div id="rating-stars-container">
+        <p>Gemiddeld cijfer: <?= $roundedGrade ?></p>
+        <div class="rating-stars" style="background-color: yellow; height: 5vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
+        <img src="img/sterren.png" class="rating-stars">
+    </div>
+    <?php foreach ($reviews as $index => $review) { ?>
+        <p><?= htmlentities($review['name']) ?></p>
+        <?php
+        // laat sterren zien met de hoeveelheid rating
+        $rating = $review['rating'];
+        for ($i = 0; $i < $rating; $i++) {
+            echo '★';
+        }
+        ?>
+        <p><?= htmlentities($review['title']) ?></p>
+        <p><?= htmlentities($review['review']) ?></p>
+    <?php } ?>
+</section>
 </body>
 </html>
