@@ -1,8 +1,48 @@
 /* body-styles */
 body {
     margin: 0;
+    background-color: #fff4e3;
+    font-family: Comfortaa, sans-serif;
+    color: #170a00;
 }
 
-/* header-styles */
+/*nav-styles*/
+nav {
+    min-height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff4e3;
+    border-bottom: solid 0.3vh #bda786;
+    padding: 0 3vw 0 43vw;
+}
+
+.logo {
+    width: 13vw;
+    height: 100%;
+}
+
+/*main-styles*/
+main {
+    min-height: 85vh;
+}
 
 /* footer-styles */
+footer {
+    background-color: #fff4e3;
+    min-height: 5vh;
+    padding: 0.1vh;
+    border-top: solid 0.3vh #bda786;
+    text-align: center;
+}
+
+/*
+       <nav>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <i class="fa-solid fa-bars"></i>
+       </nav>
+
+       <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+       </footer>
+*/
