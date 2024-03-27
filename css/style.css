@@ -33,3 +33,14 @@
     box-shadow: 5px 5px 10px rgb(0 0 0 / 0.4);
     transform:scale(1.05);
 }
+
+#rating-stars-container {
+    display: grid;
+    width: 100px;
+}
+
+.rating-stars {
+    grid-column: 1;
+    grid-row: 1;
+    height: 5vh;
+}
