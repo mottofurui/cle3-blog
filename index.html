@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Homepage</title>
 </head>
 <body>
@@ -15,16 +18,31 @@
 <!--        <p>Restorama</p>-->
     </nav>
     <header>
-        <section class="searchbar">
-            <form>
-                <label for="searchbar">Zoek restaurants bij u in de buurt!</label>
-                <input id="searchbar" name="searchbar" type="text" placeholder="bvb Amstelplein 10 1096HA">
-            </form>
-        </section>
     </header>
     <main>
-        <section id="favourite"></section>
-        <section id="restaurant"></section>
+        <div class="main-container">
+            <section class="searchbar">
+                <form>
+                    <label for="searchbar">Zoek restaurants bij u in de buurt!</label>
+                    <div>
+                        <input id="searchbar" name="searchbar" type="text" placeholder="bvb Amstelplein 10 1096HA">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+            </section>
+            <section id="restaurant">
+                <h2>Brewdog Outpost Rotterdam <i id="favorite" class="fa-regular fa-heart"></i></h2>
+                <img src="">
+                <div>Adres: Halvemaanpassage 2</div>
+                <div>Rating:
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
         <p>help</p>
