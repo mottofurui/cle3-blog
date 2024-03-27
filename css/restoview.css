@@ -1,0 +1,19 @@
+h1 {
+    font-size: 3rem;
+    margin-left: 3vw;
+}
+
+h2 {
+    margin-left: 3vw;
+}
+
+.panorama img {
+    height: 15vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+main {
+    margin-left: 3vw;
+    min-height: 0;
+}
