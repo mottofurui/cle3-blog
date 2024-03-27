@@ -30,12 +30,13 @@ nav img {
 
 /*main-styles*/
 main {
-    min-height: 78vh;
+    min-height: 80vh;
 }
 
 /* footer-styles */
 footer {
-    background-color: #f9d79e;
+    background-color: #fff4e3;
     min-height: 7vh;
     padding: 0.1vh;
+    border-top: solid 0.3vh #bda786;
 }
