@@ -16,6 +16,7 @@ function init() {
     modalCloseButton = document.getElementById("close");
 
     dropdownButton.addEventListener("click", showModal);
+    modalCloseButton.addEventListener("click", closeModal);
 }
 
 //makes the button in a restaurantArticle work
@@ -28,4 +29,8 @@ function restaurantInfoClickHandler(e) {
 
 function showModal(e) {
     modal.style.display = "block";
+}
+
+function closeModal(e) {
+    modal.style.display = "none";
 }

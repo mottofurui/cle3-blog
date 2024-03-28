@@ -77,7 +77,7 @@ mysqli_close($db)
 
 ?>
 
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="nl" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
