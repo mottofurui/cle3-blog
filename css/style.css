@@ -54,37 +54,3 @@
     grid-row: 1;
     height: 5vh;
 }
-
-/* modal-styles */
-#modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    overflow: auto;
-    background-color: #fff4e3;
-}
-
-.modal-content {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-}
-
-.modal-content span {
-    background-color: #fff4e3;
-    padding: 2vh;
-    border-bottom: solid black 0.3vh;
-}
-
-.modal-content a {
-    background-color: #fff4e3;
-    padding: 2vh;
-    border-bottom: solid black 0.3vh;
-    text-decoration: none;
-    color: #170a00;
-}
-
-.modal-content a:hover, .modal-content a:active {
-    background-color: #E3FFF4;
-}
