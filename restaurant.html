@@ -8,13 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main-styles.css">
     <link rel="stylesheet" href="css/restoview.css">
+    <script src="js/global.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
     <title>Restaurant naam</title>
 </head>
 <body>
+    <a href="#main" class="skip">Ga naar hoofdcontent</a>
     <nav>
         <img class="logo" src="./img/restoramalogo.png" alt="logo">
-        <i class="fa-solid fa-bars"></i>
+        <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
         <h1>Brewdog Outpost Rotterdam</h1>
@@ -23,7 +25,16 @@
             <img src="./img/restopanorama.jpg" alt="restaurant">
         </div>
     </header>
-    <main>
+    <main id="main">
+        <div role="navigation" id="modal">
+            <div class="modal-content">
+                <span id="close">close</span>
+                <a href="index.html">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+            </div>
+        </div>
         <section id="information">
             <h3>Omschrijving</h3>
             <p>
