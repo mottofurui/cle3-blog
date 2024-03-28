@@ -67,7 +67,7 @@ mysqli_close($db);
                     <div class="restaurant">
                         <section>
                             <h2><?= htmlentities($restaurant['name']) ?></h2>
-                            <p><?= htmlentities($restaurant['info']) ?></p>
+                            <p><?= htmlentities($restaurant['adress']) ?></p>
                             <p class="stars">
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>

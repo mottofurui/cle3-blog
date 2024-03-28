@@ -30,26 +30,77 @@ $restaurant = mysqli_fetch_assoc($result);
 mysqli_close($db);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main-styles.css">
+    <link rel="stylesheet" href="css/restoview.css">
+    <script src="js/global.js"></script>
+    <script src="js/review.js"></script>
+    <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
+    <title>Restaurant naam</title>
 </head>
 <body>
-<div class="column is-narrow">
-    <h2 class="title mt-4 has-text-warning"><?= htmlentities($restaurant['name'])?> details</h2>
-    <section class="content">
-        <ul>
-            <li class="has-text-warning">adress: <?= htmlentities($restaurant['info'])?></li>
-<!--            <li class="has-text-warning">Threat: --><?php //= htmlentities($restaurant[''])?><!--</li>-->
-        </ul>
-    </section>
-    <div>
-        <a class="button has-text-warning has-background-dark" href="index.php">Go back to the list</a>
-    </div>
-</div>
+    <a href="#main" class="skip">Ga naar hoofdcontent</a>
+    <nav>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <i id="modal-open" class="fa-solid fa-bars"></i>
+    </nav>
+    <header>
+        <h1><?= htmlentities($restaurant['name'])?></h1>
+        <h2><?= htmlentities($restaurant['adress'])?></h2>
+        <div class="panorama">
+            <img src="./img/restopanorama.jpg" alt="restaurant-banner">
+        </div>
+    </header>
+    <main id="main">
+        <div role="navigation" id="modal">
+            <div class="modal-content">
+                <span id="close">close</span>
+                <a href="index.php">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+            </div>
+        </div>
+        <section id="information">
+            <h3>Omschrijving</h3>
+            <p><?= htmlentities($restaurant['info'])?></p>
+            <h3>Tags</h3>
+            <ul>
+                <li>Craft Beer</li>
+                <li>Burgers</li>
+                <li>Accessible</li>
+            </ul>
+        </section>
+        <section id="reviews">
+            <h3>Ervaringen</h3>
+            <div class="flex">
+                <p>4,5</p>
+                <div class="stars">
+                    <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <button class="button" type="submit">Laat uw ervaring achter</button>
+            <div class="review">
+                <h4>Naam</h4>
+                <div class="stars">
+                    <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+                <p>
+                    Dit restaurant heeft erg behulpzaam personeel! Ik werd aan de deur begroet en begeleid naar de tafel.
+                    Voor mijn geleide hond hadden ze een bakje water en de tafel met dimbare lichten kon ik van te voren
+                    speciaal reserveren!
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+    </footer>
 </body>
 </html>
