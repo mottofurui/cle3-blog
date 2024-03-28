@@ -43,8 +43,9 @@ mysqli_close($db);
     <h2 class="title mt-4 has-text-warning"><?= htmlentities($restaurant['name'])?> details</h2>
     <section class="content">
         <ul>
-            <li class="has-text-warning">adress: <?= htmlentities($restaurant['info'])?></li>
-<!--            <li class="has-text-warning">Threat: --><?php //= htmlentities($restaurant[''])?><!--</li>-->
+            <li class="has-text-warning">informatie: <?= htmlentities($restaurant['info'])?></li>
+            <li class="has-text-warning">adress: <?= htmlentities($restaurant['adress'])?></li>
+            <!--            <li class="has-text-warning">Threat: --><?php //= htmlentities($restaurant[''])?><!--</li>-->
         </ul>
     </section>
     <div>
