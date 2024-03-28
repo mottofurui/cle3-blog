@@ -34,34 +34,45 @@ mysqli_close($db);
     <title>Homepage</title>
 </head>
 <body>
-    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
-    <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
-<!--        <p>Insert menu logo to go to the menu</p>-->
-    </nav>
-    <header>
-    </header>
-    <main id="main">
-        <div id="modal">
-            <div role="navigation" class="modal-content">
-                <span id="close">close</span>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-            </div>
+<a href="#main" class="skip">Ga naar Hoofdcontent</a>
+<nav>
+    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
+    <i id="modal-open" class="fa-solid fa-bars"></i>
+    <!--        <p>Insert menu logo to go to the menu</p>-->
+</nav>
+<header>
+</header>
+<main id="main">
+    <div id="modal">
+        <div role="navigation" class="modal-content">
+            <span id="close">close</span>
+            <a href="index.php">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
         </div>
-        <section class="searchbar">
-            <form role="search">
-                <label for="searchbar">Zoek op tags</label>
-                <div>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
-                    <button class="button" type="submit">Zoeken</button>
-                </div>
-            </form>
-        </section>
-        <section id="main-container">
+    </div>
+    <section class="searchbar">
+        <form role="search">
+            <label for="searchbar">Zoek op tags</label>
+            <div>
+                <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
+                <button class="button" type="submit">Zoeken</button>
+            </div>
+        </form>
+    </section>
+    <section id="main-container">
+        <section class="border">
+        <div class="main-container">
+            <section class="searchbar">
+                <form>
+                    <label for="searchbar">Vul hier uw adres in</label>
+                    <div>
+                        <input id="searchbar" name="searchbar" type="text" placeholder="B.V Amstelplein 10 3034ZL">
+                        <button class="button" type="submit">zoeken!</button>
+                    </div>
+                </form>
+            </section>
             <section class="border">
                 <?php foreach ($restaurants as $index => $restaurant) { ?>
                     <div id="restaurant">
@@ -87,6 +98,6 @@ mysqli_close($db);
     </main>
     <footer>
         <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-    </footer>
+    </footer
 </body>
 </html>
