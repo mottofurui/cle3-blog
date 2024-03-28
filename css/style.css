@@ -51,13 +51,11 @@ p {
 
 .border {
     border-top: solid 0.7vh #bda786;
-    border-bottom: solid 0.7vh #bda786;
+    /*border-bottom: solid 0.7vh #bda786;*/
     margin: 1vh 0;
 }
 
 .restaurant {
-    /*border-top: solid 0.7vh #bda786;*/
-    /*width: 90vw;*/
     padding: 2.5vw;
 }
 
