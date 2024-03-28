@@ -3,7 +3,7 @@ h1 {
     margin: 4vh 3vw;
 }
 
-h2, h3, h4, p {
+h2, h3, h4, p, ul {
     margin: 3vh 3vw;
 }
 
@@ -34,6 +34,17 @@ main {
 .flex {
     display: flex;
     align-items: center;
+}
+
+.button {
+    font-family: Comfortaa, sans-serif;
+    font-size: 1.3rem;
+    background-color: #062a1d;
+    border: solid 0.3vh #bda786;
+    color: #fff4e3;
+    margin: 4vh 3vw;
+    padding: 1.7vw;
+    width: 94vw;
 }
 
 .review {
