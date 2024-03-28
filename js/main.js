@@ -2,6 +2,7 @@ window.addEventListener("load", init);
 
 // global vars
 let restaurant;
+let reviewAdd;
 
 function init() {
     restaurant = document.getElementById("main-container");
