@@ -6,6 +6,21 @@ body {
     color: #170a00;
 }
 
+/*skip-button-styles*/
+.skip {
+    position: absolute;
+    word-wrap: normal;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+}
+
+.skip:focus {
+    clip: auto;
+    z-index: 1;
+}
+
 /*nav-styles*/
 nav {
     min-height: 5vh;
@@ -22,25 +37,11 @@ nav {
     height: 100%;
 }
 
-/*main-styles*/
-main {
-    min-height: 85vh;
-}
-
-/* footer-styles */
-footer {
-    background-color: #fff4e3;
-    min-height: 5vh;
-    padding: 0.1vh;
-    border-top: solid 0.3vh #bda786;
-    text-align: center;
-}
-
 /* modal-styles */
 #modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     overflow: auto;
     background-color: #fff4e3;
 }
@@ -67,7 +68,27 @@ footer {
 }
 
 .modal-content a:hover, .modal-content a:active {
-    background-color: #E3FFF4;
+    background-color: #062a1d;
+    color: #fff4e3;
+}
+
+#close:hover {
+    background-color: #062a1d;
+    color: #fff4e3;
+}
+
+/*main-styles*/
+main {
+    min-height: 85vh;
+}
+
+/* footer-styles */
+footer {
+    background-color: #fff4e3;
+    min-height: 5vh;
+    padding: 0.1vh;
+    border-top: solid 0.3vh #bda786;
+    text-align: center;
 }
 
 /*
@@ -84,12 +105,13 @@ footer {
     <title>Document</title>
 </head>
 <body>
+    <a href="#main" class="skip">Ga naar hoofdcontent</a>
        <nav>
         <img class="logo" src="./img/restoramalogo.png" alt="logo">
         <i id="modal-open" class="fa-solid fa-bars"></i>
        </nav>
-       <main>
-        <div id="modal">
+       <main id="main">
+        <div role="navigation" id="modal">
             <div class="modal-content">
                 <span id="close">close</span>
                 <a href="index.html">reviews</a>

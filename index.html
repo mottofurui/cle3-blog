@@ -13,16 +13,17 @@
     <title>Homepage</title>
 </head>
 <body>
+    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
     <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
         <i id="modal-open" class="fa-solid fa-bars"></i>
 <!--        <p>Insert menu logo to go to the menu</p>-->
     </nav>
     <header>
     </header>
-    <main>
+    <main id="main">
         <div id="modal">
-            <div class="modal-content">
+            <div role="navigation" class="modal-content">
                 <span id="close">close</span>
                 <a href="index.html">reviews</a>
                 <a href="#">reviews</a>
@@ -31,7 +32,7 @@
             </div>
         </div>
         <section class="searchbar">
-            <form>
+            <form role="search">
                 <label for="searchbar">Zoek op tags</label>
                 <div>
                     <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
@@ -71,7 +72,7 @@
         </section>
     </main>
     <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
     </footer>
 </body>
 </html>
