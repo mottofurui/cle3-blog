@@ -62,27 +62,29 @@ mysqli_close($db);
             </form>
         </section>
         <section id="main-container">
-            <section class="border">
-                <?php foreach ($restaurants as $index => $restaurant) { ?>
-                    <div id="restaurant">
+            <?php foreach ($restaurants as $index => $restaurant) { ?>
+                <section class="border">
+                    <div class="restaurant">
                         <section>
-                            <h2><?= htmlentities($restaurant['name']) ?><i id="favorite" class="fa-regular fa-heart"></i></h2>
+                            <h2><?= htmlentities($restaurant['name']) ?></h2>
                             <p><?= htmlentities($restaurant['info']) ?></p>
-                            <p>
+                            <p class="stars">
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                             </p>
-                            <div><a class="button" href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a></div>
+                            <div>
+                                <a class="link" href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                            </div>
                         </section>
                         <section>
                             <img src="">
                         </section>
                     </div>
-                <?php } ?>
-            </section>
+                </section>
+            <?php } ?>
         </section>
     </main>
     <footer>
