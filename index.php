@@ -38,7 +38,6 @@ mysqli_close($db);
     <nav>
         <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
         <i id="modal-open" class="fa-solid fa-bars"></i>
-<!--        <p>Insert menu logo to go to the menu</p>-->
     </nav>
     <header>
     </header>

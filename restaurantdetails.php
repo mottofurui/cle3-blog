@@ -51,13 +51,6 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-        <h1><?= htmlentities($restaurant['name'])?></h1>
-        <h2><?= htmlentities($restaurant['adress'])?></h2>
-        <div class="panorama">
-            <img src="./img/restopanorama.jpg" alt="restaurant-banner">
-        </div>
-    </header>
-    <main id="main">
         <div role="navigation" id="modal">
             <div class="modal-content">
                 <span id="close">close</span>
@@ -67,6 +60,13 @@ mysqli_close($db);
                 <a href="#">reviews</a>
             </div>
         </div>
+        <h1><?= htmlentities($restaurant['name'])?></h1>
+        <h2><?= htmlentities($restaurant['adress'])?></h2>
+        <div class="panorama">
+            <img src="./img/restopanorama.jpg" alt="restaurant-banner">
+        </div>
+    </header>
+    <main id="main">
         <section id="information">
             <h3>Omschrijving</h3>
             <p><?= htmlentities($restaurant['info'])?></p>
