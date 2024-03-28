@@ -109,7 +109,7 @@ mysqli_close($db);
             <h3>Ervaringen</h3>
             <p><?= $roundedGrade ?> van de 5</p>
             <div id="rating-stars-container">
-                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
+                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
                 <img src="img/sterren.png" class="rating-stars">
             </div>
             <button class="button" type="submit">Laat uw ervaring achter</button>
