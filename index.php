@@ -1,3 +1,23 @@
+<?php
+/** @var mysqli $db */
+//voeg database toe
+session_start();
+
+require_once 'includes/database.php';
+
+//informatie uit de database ophalen op basis van Id
+$query = "SELECT * FROM restaurants";
+$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+
+// Store the $restaurants in an array
+$restaurants = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $restaurants[] = $row;
+}
+
+//connectie met database afsluiten
+mysqli_close($db);
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -26,7 +46,7 @@
         <div id="modal">
             <div role="navigation" class="modal-content">
                 <span id="close">close</span>
-                <a href="index.html">reviews</a>
+                <a href="index.php">reviews</a>
                 <a href="#">reviews</a>
                 <a href="#">reviews</a>
                 <a href="#">reviews</a>
@@ -43,32 +63,25 @@
         </section>
         <section id="main-container">
             <section class="border">
-                <div class="restaurant">
-                    <h2>Brewdog Outpost Rotterdam </h2>
-                    <p>Halvemaanpassage 2</p>
-                    <p>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </p>
-                    <button class="button">Meer informatie</button>
-                </div>
-            </section>
-            <section class="border">
-                <div class="restaurant">
-                    <h2>Brewdog Outpost Rotterdam </h2>
-                    <p>Halvemaanpassage 2</p>
-                    <p>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </p>
-                    <button class="button">Meer informatie</button>
-                </div>
+                <?php foreach ($restaurants as $index => $restaurant) { ?>
+                    <div id="restaurant">
+                        <section>
+                            <h2><?= htmlentities($restaurant['name']) ?><i id="favorite" class="fa-regular fa-heart"></i></h2>
+                            <p><?= htmlentities($restaurant['info']) ?></p>
+                            <p>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                            <div><a class="button" href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a></div>
+                        </section>
+                        <section>
+                            <img src="">
+                        </section>
+                    </div>
+                <?php } ?>
             </section>
         </section>
     </main>
