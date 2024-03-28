@@ -51,3 +51,14 @@ main {
 .review {
     border-top: solid 0.7vh #bda786;
 }
+
+#rating-stars-container {
+    display: grid;
+        max-width: 30vw;
+}
+
+.rating-stars {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+}
