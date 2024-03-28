@@ -1,5 +1,13 @@
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
 /* main-styles */
-.main-container {
+#main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,14 +16,13 @@
 }
 
 .searchbar form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10vh;
-    margin-top: 10vh;
+    margin: 4vh 2.5vw;
 }
 
 .searchbar form label {
     text-align: center;
+    font-size: 2rem;
+    margin: 4vh 0;
 }
 
 .searchbar form div {
@@ -23,23 +30,38 @@
 }
 
 .searchbar input {
+    border: solid 0.3vh #bda786;
+    margin: 2vh 0;
+    width: 94vw;
     padding: 4vw;
+}
+
+#searchbar {
+    background-color: #fff4e3;
 }
 
 .button {
     font-family: Comfortaa, sans-serif;
     font-size: 1.3rem;
     background-color: #062a1d;
+    border: solid 0.3vh #bda786;
     color: #fff4e3;
+    margin: 2vh 0;
 }
 
-#restaurant {
-    border: solid black 2px;
-    width: 90vw;
-    padding: 10px;
+.border {
+    border-top: solid 0.7vh #bda786;
+    border-bottom: solid 0.7vh #bda786;
+    margin: 1vh 0;
 }
 
-#restaurant button {
+.restaurant {
+    /*border-top: solid 0.7vh #bda786;*/
+    /*width: 90vw;*/
+    padding: 2.5vw;
+}
+
+.restaurant button {
     width: 90vw;
     height: 7vh;
 }

@@ -8,7 +8,7 @@ let dropdownButton;
 let modalCloseButton;
 
 function init() {
-    restaurant = document.getElementById("restaurant");
+    restaurant = document.getElementById("main-container");
     restaurant.addEventListener("click", restaurantInfoClickHandler);
 
     modal = document.getElementById("modal");
