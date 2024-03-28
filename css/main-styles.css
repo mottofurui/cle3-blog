@@ -68,7 +68,13 @@ nav {
 }
 
 .modal-content a:hover, .modal-content a:active {
-    background-color: #E3FFF4;
+    background-color: #062a1d;
+    color: #fff4e3;
+}
+
+#close:hover {
+    background-color: #062a1d;
+    color: #fff4e3;
 }
 
 /*main-styles*/
@@ -105,7 +111,7 @@ footer {
         <i id="modal-open" class="fa-solid fa-bars"></i>
        </nav>
        <main id="main">
-        <div id="modal">
+        <div role="navigation" id="modal">
             <div class="modal-content">
                 <span id="close">close</span>
                 <a href="index.html">reviews</a>
