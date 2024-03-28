@@ -1,0 +1,13 @@
+.idea
+#.vscode
+
+include/database.php
+includes/database.php
+database.php
+
+include/reviews-database.php
+includes/reviews-database.php
+reviews-database.php
+
+# TeAM 2
+
