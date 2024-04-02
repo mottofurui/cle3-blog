@@ -13,7 +13,7 @@ main {
     font-size: 1.4rem;
     border: solid 0.3vh #062a1d;
     background-color: #B4D7C2;
-    color: #062a1d;
+    color: #170a00;
     font-family: Comfortaa, sans-serif;
 }
 
@@ -22,7 +22,7 @@ main {
 }
 
 ::placeholder {
-    color: #062a1d;
+    color: #170a00;
 }
 
 /*select option {*/
@@ -33,6 +33,7 @@ main {
 label {
     font-size: 1.5rem;
     margin-bottom: 1vh;
+    font-weight: bold;
 }
 
 button {

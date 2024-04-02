@@ -92,7 +92,7 @@ mysqli_close($db);
             </div>
         </div>
         <h1><?= htmlentities($restaurant['name'])?></h1>
-        <h2><?= htmlentities($restaurant['adress'])?></h2>
+        <h2><?= htmlentities($restaurant['adress'])?>, <?= htmlentities($restaurant['city'])?></h2>
         <div class="panorama">
             <img src="./img/restopanorama.jpg" alt="restaurant-banner">
         </div>

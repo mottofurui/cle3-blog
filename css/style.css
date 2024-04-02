@@ -1,3 +1,8 @@
+h1 {
+    font-size: 2.5rem;
+    margin-left: 3vw;
+}
+
 h2 {
     font-size: 2.5rem;
     margin-left: 3vw;
@@ -21,38 +26,54 @@ p {
     align-items: center;
 }
 
-.searchbar form {
+form {
     margin: 4vh 2.5vw;
 }
 
-.searchbar form label {
+form label {
     text-align: center;
     font-size: 2rem;
     margin: 4vh 0;
+    font-weight: bold;
 }
 
-.searchbar form div {
+form div {
     display: flex;
+    flex-direction: column;
 }
 
 .searchbar input {
-    border: solid 0.3vh #bda786;
+    border: solid 0.3vh #062a1d;
+    background-color: #B4D7C2;
+    font-family: Comfortaa, sans-serif;
     margin: 2vh 0;
-    width: 94vw;
+    /*width: 94vw;*/
     padding: 4vw;
+    font-size: 1.4rem;
 }
 
-#searchbar {
-    background-color: #fff4e3;
+form select {
+    border: solid 0.3vh #062a1d;
+    background-color: #B4D7C2;
+    font-family: Comfortaa, sans-serif;
+    margin: 2vh 0;
+    /*width: 94vw;*/
+    padding: 4vw;
+    font-size: 1.4rem;
+}
+
+::placeholder {
+
+    color: #170a00;
 }
 
 .button {
     font-family: Comfortaa, sans-serif;
     font-size: 1.3rem;
     background-color: #062a1d;
-    border: solid 0.3vh #bda786;
+    border: solid 0.3vh #062a1d;
     color: #fff4e3;
-    margin: 2vh 0;
+    padding: 3vw;
 }
 
 .link {
@@ -60,10 +81,14 @@ p {
     font-size: 1.3rem;
     background-color: #062a1d;
     border: solid 0.3vh #bda786;
-    color: #fff4e3;
     margin: 3vw;
+    text-align: center;
+    padding: 2vh;
+}
+
+a {
+    color: #fff4e3;
     text-decoration: none;
-    padding: 1.5vh 20vw;
 }
 
 .border {
@@ -85,10 +110,26 @@ p {
 #rating-stars-container {
     display: grid;
     width: 100px;
+    margin-bottom: 3vh;
 }
 
 .rating-stars {
     grid-column: 1;
     grid-row: 1;
-    height: 5vh;
+    height: 10vh;
+}
+
+.rating-stars-div {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+    background-color: #fff4e3;
+    width: 10px;
+}
+
+.rating-stars-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+    padding-left: 10px;
 }
