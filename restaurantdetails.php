@@ -112,7 +112,10 @@ mysqli_close($db);
                 <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
                 <img src="img/sterren.png" class="rating-stars">
             </div>
-            <button class="button" type="submit">Laat uw ervaring achter</button>
+<!--            <button class="button" type="submit">Laat uw ervaring achter</button>-->
+            <div class="link">
+                <a href="reviews.php?restaurant_id=<?= $restaurantId ?>">Laat uw ervaring achter</a>
+            </div>
             <?php foreach ($reviews as $index => $review) { ?>
                 <div class="review">
                     <h4><?= htmlentities($review['name']) ?></h4>

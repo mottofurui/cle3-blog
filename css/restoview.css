@@ -37,15 +37,19 @@ main {
     align-items: center;
 }
 
-.button {
+.link {
     font-family: Comfortaa, sans-serif;
     font-size: 1.3rem;
     background-color: #062a1d;
     border: solid 0.3vh #bda786;
+    margin: 3vw;
+    text-align: center;
+    padding: 2vh;
+}
+
+.link a {
     color: #fff4e3;
-    margin: 4vh 3vw;
-    padding: 2vh 1.7vw;
-    width: 94vw;
+    text-decoration: none;
 }
 
 .review {

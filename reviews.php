@@ -3,6 +3,13 @@
 //voeg database toe
 session_start();
 
+if (!isset($_GET['restaurant_id']) || $_GET['restaurant_id'] === '') {
+    header('Location: index.php');
+    exit;
+}
+
+$restaurantId = $_GET['restaurant_id'];
+
 require_once 'includes/reviews-database.php';
 
 $ratingNumbers = [];
@@ -35,11 +42,11 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
 
         //insert query opbouwen
-        $insertQuery = "INSERT INTO `reviews`(`id`, `name`, `title`, `review`, `rating`) VALUES ('', '$name', '$title', '$review', '$rating')";
+        $insertQuery = "INSERT INTO `reviews`(`id`, `restaurant_id`, `name`, `title`, `review`, `rating`) VALUES ('', '$restaurantId', '$name', '$title', '$review', '$rating')";
         // Als de query correct uitgevoerd wordt
         if (mysqli_query($db, $insertQuery)) {
             // Redirect naar reviews.php
-            header('location: reviews.php');
+            header("location: https://localhost/cle3-blog/restaurantdetails.php?restaurant_id=$restaurantId");
             exit;
         } else {
             // Niet correct uitgevoerd
