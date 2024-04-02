@@ -153,9 +153,8 @@ mysqli_close($db);
                             <div class="rating-stars-div"></div>
                             <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                         </div>
-                        <div><a class="link"
-                                href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
-                                informatie</a>
+                        <div class="link">
+                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
                         </div>
                     </div>
                 </section>
