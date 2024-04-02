@@ -2,7 +2,7 @@
 $host       = "localhost";
 $user       = "root";
 $password   = "";
-$database   = "cle_3";
+$database   = "cle3";
 
 
 
