@@ -21,7 +21,7 @@ $query = "SELECT * FROM restaurants WHERE restaurant_id = '$restaurantId'";
 $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
 
 //gebruiker terug sturen als er geen resultaten uit query komen
-if (mysqli_num_rows($result) != 1){
+if (mysqli_num_rows($result) != 1) {
     header('Location: index.php');
     exit;
 }
@@ -52,7 +52,10 @@ foreach ($ratingNumbers as $ratingNumber) {
     $count++;
 }
 
-$roundedGrade = round($maxCount / $count, 1);
+$roundedGrade = 0;
+if (!$reviews == []) {
+    $roundedGrade = round($maxCount / $count, 1);
+}
 
 //connectie met database afsluiten
 mysqli_close($db);
@@ -107,12 +110,13 @@ mysqli_close($db);
         </section>
         <section id="reviews">
             <h3>Ervaringen</h3>
+            <p>er zijn <?= $count ?> reviews</p>
             <p><?= $roundedGrade ?> van de 5</p>
             <div id="rating-stars-container">
                 <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
-                <img src="img/sterren.png" class="rating-stars">
+                <div class="rating-stars-div"></div>
+                <img src="img/sterren.png" class="rating-stars-image">
             </div>
-<!--            <button class="button" type="submit">Laat uw ervaring achter</button>-->
             <div class="link">
                 <a href="reviews.php?restaurant_id=<?= $restaurantId ?>">Laat uw ervaring achter</a>
             </div>
