@@ -54,11 +54,26 @@ main {
 
 #rating-stars-container {
     display: grid;
-        max-width: 30vw;
+    width: 100px;
 }
 
 .rating-stars {
     grid-column: 1;
     grid-row: 1;
     height: 10vh;
+}
+
+.rating-stars-div {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+    background-color: #fff4e3;
+    width: 10px;
+}
+
+.rating-stars-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+    padding-left: 10px;
 }

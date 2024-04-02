@@ -34,60 +34,84 @@ mysqli_close($db);
     <title>Homepage</title>
 </head>
 <body>
-    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
-    <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
-    </nav>
-    <header>
-    </header>
-    <main id="main">
-        <div id="modal">
-            <div role="navigation" class="modal-content">
-                <span id="close">close</span>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-            </div>
+<a href="#main" class="skip">Ga naar Hoofdcontent</a>
+<nav>
+    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
+    <i id="modal-open" class="fa-solid fa-bars"></i>
+</nav>
+<header>
+</header>
+<main id="main">
+    <div id="modal">
+        <div role="navigation" class="modal-content">
+            <span id="close">close</span>
+            <a href="index.php">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
         </div>
-        <section class="searchbar">
-            <form role="search">
-                <label for="searchbar">Zoek op tags</label>
-                <div>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
-                    <button class="button" type="submit">Zoeken</button>
-                </div>
-            </form>
-        </section>
-        <section id="main-container">
-            <?php foreach ($restaurants as $index => $restaurant) { ?>
-                <section class="border">
-                    <div class="restaurant">
-                        <section>
+    </div>
+    <section class="searchbar">
+        <form role="search">
+            <label for="searchbar">Zoek op tags</label>
+            <div>
+                <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
+                <button class="button" type="submit">Zoeken</button>
+            </div>
+        </form>
+    </section>
+
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <select name="selectedCity" id="selectedCity">
+            <option value="" selected>Alle steden</option>
+            <?php foreach ($restaurants as $city) { ?>
+                <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
+            <?php } ?>
+        </select>
+        <input type="submit" name="Submit" value="Select"/>
+    </form>
+
+
+    <section id="main-container">
+        <?php foreach ($restaurants as $restaurant) { ?>
+            <?php
+            if (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+                $selectedCity = $_POST['selectedCity'];
+                if ($selectedCity == $restaurant['city']) {
+                    ?>
+                    <section class="border">
+                        <div class="restaurant">
                             <h2><?= htmlentities($restaurant['name']) ?></h2>
                             <p><?= htmlentities($restaurant['adress']) ?></p>
-                            <p class="stars">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </p>
-                            <div>
-                                <a class="link" href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                            <div><a class="link"
+                                    href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
+                                    informatie</a>
                             </div>
-                        </section>
-                        <section>
-                            <img src="">
-                        </section>
+                        </div>
+                    </section>
+                    <?php
+                }
+            } else {
+                ?>
+                <section class="border">
+                    <div class="restaurant">
+                        <h2><?= htmlentities($restaurant['name']) ?></h2>
+                        <p><?= htmlentities($restaurant['adress']) ?></p>
+                        <div><a class="link"
+                                href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
+                                informatie</a>
+                        </div>
                     </div>
                 </section>
-            <?php } ?>
-        </section>
-    </main>
-    <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-    </footer>
+                <?php
+            } ?>
+
+        <?php } ?>
+
+    </section>
+</main>
+<footer>
+    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
+</footer>
 </body>
 </html>
