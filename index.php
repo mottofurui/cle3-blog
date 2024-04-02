@@ -40,17 +40,17 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-    </header>
-    <main id="main">
         <div id="modal">
             <div role="navigation" class="modal-content">
-                <span id="close">close</span>
+                <button role="close" id="close">close</button>
                 <a href="index.php">reviews</a>
                 <a href="#">reviews</a>
                 <a href="#">reviews</a>
                 <a href="#">reviews</a>
             </div>
         </div>
+    </header>
+    <main id="main">
         <section class="searchbar">
             <form role="search">
                 <label for="searchbar">Zoek op tags</label>

@@ -56,13 +56,13 @@ nav {
 .modal-content span {
     background-color: #fff4e3;
     padding: 2vh;
-    border-bottom: solid black 0.3vh;
+    border-bottom: solid #bda786 0.3vh;
 }
 
 .modal-content a {
     background-color: #fff4e3;
     padding: 2vh;
-    border-bottom: solid black 0.3vh;
+    border-bottom: solid #bda786 0.3vh;
     text-decoration: none;
     color: #170a00;
 }
@@ -70,6 +70,18 @@ nav {
 .modal-content a:hover, .modal-content a:active {
     background-color: #062a1d;
     color: #fff4e3;
+}
+
+#close {
+    text-align: left;
+    font-size: 1rem;
+    font-family: Comfortaa, sans-serif;
+    background-color: #fff4e3;
+    padding: 2vh;
+    border: none;
+    border-bottom: solid #bda786 0.3vh;
+    text-decoration: none;
+    color: #170a00;
 }
 
 #close:hover {
