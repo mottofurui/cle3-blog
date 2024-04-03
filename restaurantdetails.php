@@ -3,6 +3,9 @@
 session_start();
 //verbinding van database
 require_once 'includes/database.php';
+require_once 'includes/reviews-database.php';
+
+$ratingNumbers = [];
 
 //ID uit de url ophalen
 //zo niet stuur gebruiker terug naar index
@@ -18,13 +21,41 @@ $query = "SELECT * FROM restaurants WHERE restaurant_id = '$restaurantId'";
 $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
 
 //gebruiker terug sturen als er geen resultaten uit query komen
-if (mysqli_num_rows($result) != 1){
+if (mysqli_num_rows($result) != 1) {
     header('Location: index.php');
     exit;
 }
 
+//START REVIEW PHP
 //informatie uit de database omzetten naar php array
 $restaurant = mysqli_fetch_assoc($result);
+
+// Select all the reviews from the database
+$query = "SELECT * FROM reviews WHERE restaurant_id = $restaurantId";
+$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+
+// Store the reviews in an array
+$reviews = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $reviews[] = $row;
+}
+
+// push de rating in array ratingnumbers
+foreach ($reviews as $reviewRating) {
+    $ratingNumbers[] = $reviewRating['rating'];
+}
+
+$maxCount = 0;
+$count = 0;
+foreach ($ratingNumbers as $ratingNumber) {
+    $maxCount += $ratingNumber;
+    $count++;
+}
+
+$roundedGrade = 0;
+if (!$reviews == []) {
+    $roundedGrade = round($maxCount / $count, 1);
+}
 
 //connectie met database afsluiten
 mysqli_close($db);
@@ -42,7 +73,7 @@ mysqli_close($db);
     <script src="js/global.js"></script>
     <script src="js/review.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <title>Restaurant naam</title>
+    <title><?= htmlentities($restaurant['name'])?></title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
@@ -51,15 +82,8 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-        <h1><?= htmlentities($restaurant['name'])?></h1>
-        <h2><?= htmlentities($restaurant['adress'])?></h2>
-        <div class="panorama">
-            <img src="./img/restopanorama.jpg" alt="restaurant-banner">
-        </div>
-    </header>
-    <main id="main">
         <div role="navigation" id="modal">
-            <div class="modal-content">
+            <div id="modal-content">
                 <span id="close">close</span>
                 <a href="index.php">reviews</a>
                 <a href="#">reviews</a>
@@ -67,6 +91,13 @@ mysqli_close($db);
                 <a href="#">reviews</a>
             </div>
         </div>
+        <h1><?= htmlentities($restaurant['name'])?></h1>
+        <h2><?= htmlentities($restaurant['adress'])?>, <?= htmlentities($restaurant['city'])?></h2>
+        <div class="panorama">
+            <img src="./img/restopanorama.jpg" alt="restaurant-banner">
+        </div>
+    </header>
+    <main id="main">
         <section id="information">
             <h3>Omschrijving</h3>
             <p><?= htmlentities($restaurant['info'])?></p>
@@ -79,24 +110,31 @@ mysqli_close($db);
         </section>
         <section id="reviews">
             <h3>Ervaringen</h3>
-            <div class="flex">
-                <p>4,5</p>
-                <div class="stars">
-                    <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-                </div>
+            <p>er zijn <?= $count ?> reviews</p>
+            <p><?= $roundedGrade ?> van de 5</p>
+            <div id="rating-stars-container">
+                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
+                <div class="rating-stars-div"></div>
+                <img src="img/sterren.png" class="rating-stars-image">
             </div>
-            <button class="button" type="submit">Laat uw ervaring achter</button>
-            <div class="review">
-                <h4>Naam</h4>
-                <div class="stars">
-                    <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-                </div>
-                <p>
-                    Dit restaurant heeft erg behulpzaam personeel! Ik werd aan de deur begroet en begeleid naar de tafel.
-                    Voor mijn geleide hond hadden ze een bakje water en de tafel met dimbare lichten kon ik van te voren
-                    speciaal reserveren!
-                </p>
+            <div class="link">
+                <a href="reviews.php?restaurant_id=<?= $restaurantId ?>">Laat uw ervaring achter</a>
             </div>
+            <?php foreach ($reviews as $index => $review) { ?>
+                <div class="review">
+                    <h4><?= htmlentities($review['name']) ?></h4>
+                    <div class="stars">
+                        <?php
+                        // laat sterren zien met de hoeveelheid rating
+                        $rating = $review['rating'];
+                        for ($i = 0; $i < $rating; $i++) { ?>
+                            <i class="fa-solid fa-star"></i>
+                        <?php } ?>
+                    </div>
+                    <h4><?= htmlentities($review['title']) ?></h4>
+                    <p><?= htmlentities($review['review']) ?></p>
+                </div>
+            <?php } ?>
         </section>
     </main>
     <footer>

@@ -1,0 +1,48 @@
+main {
+    margin: 0 3vw;
+}
+
+.formfield {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0;
+}
+
+.formfield input, .formfield select, .formfield textarea {
+    padding: 3vh 3vw;
+    font-size: 1.4rem;
+    border: solid 0.3vh #062a1d;
+    background-color: #B4D7C2;
+    color: #170a00;
+    font-family: Comfortaa, sans-serif;
+}
+
+.formfield textarea {
+    min-height: 20vh;
+}
+
+::placeholder {
+    color: #170a00;
+}
+
+/*select option {*/
+/*    background-color: #062a1d;*/
+/*    color: #fff4e3;*/
+/*}*/
+
+label {
+    font-size: 1.5rem;
+    margin-bottom: 1vh;
+    font-weight: bold;
+}
+
+button {
+    font-family: Comfortaa, sans-serif;
+    font-size: 1.3rem;
+    background-color: #062a1d;
+    border: solid 0.3vh #bda786;
+    color: #fff4e3;
+    margin: 4vh 0;
+    padding: 2vh 1.7vw;
+    width: 94vw;
+}

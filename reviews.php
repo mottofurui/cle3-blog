@@ -3,6 +3,13 @@
 //voeg database toe
 session_start();
 
+if (!isset($_GET['restaurant_id']) || $_GET['restaurant_id'] === '') {
+    header('Location: index.php');
+    exit;
+}
+
+$restaurantId = $_GET['restaurant_id'];
+
 require_once 'includes/reviews-database.php';
 
 $ratingNumbers = [];
@@ -35,11 +42,11 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
 
         //insert query opbouwen
-        $insertQuery = "INSERT INTO `reviews`(`id`, `name`, `title`, `review`, `rating`) VALUES ('', '$name', '$title', '$review', '$rating')";
+        $insertQuery = "INSERT INTO `reviews`(`id`, `restaurant_id`, `name`, `title`, `review`, `rating`) VALUES ('', '$restaurantId', '$name', '$title', '$review', '$rating')";
         // Als de query correct uitgevoerd wordt
         if (mysqli_query($db, $insertQuery)) {
             // Redirect naar reviews.php
-            header('location: reviews.php');
+            header("location: https://localhost/cle3-blog/restaurantdetails.php?restaurant_id=$restaurantId");
             exit;
         } else {
             // Niet correct uitgevoerd
@@ -72,48 +79,76 @@ foreach ($ratingNumbers as $ratingNumber) {
 }
 
 $roundedGrade = round($maxCount / $count, 1);
+
 // Close the connection
 mysqli_close($db)
 
 ?>
 
-<html lang="nl" xmlns="http://www.w3.org/1999/html">
+<!doctype html>
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main-styles.css">
+    <link rel="stylesheet" href="css/review.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
+    <script src="js/global.js"></script>
+    <title>Deel Ervaring</title>
 </head>
-
 <body>
-<form action="" method="post">
+    <a href="#main" class="skip">Ga naar hoofdcontent</a>
+    <nav>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <i id="modal-open" class="fa-solid fa-bars"></i>
+    </nav>
+    <main>
+        <div role="navigation" id="modal">
+            <div id="modal-content">
+                <span id="close">close</span>
+                <a href="index.php">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+                <a href="#">reviews</a>
+            </div>
+        </div>
+        <h1>Laat uw ervaring achter</h1>
+        <form action="" method="post">
 
-    <label for="name">Naam</label>
-    <input id="name" name="name" value="<?= isset($name) ? $name : '' ?>">
-    <?= isset($errors['name']) ? $errors['name'] : '' ?>
-
-    <label for="title">Title</label>
-    <input id="title" name="title" value="<?= isset($title) ? $title : '' ?>">
-    <?= isset($errors['title']) ? $errors['title'] : '' ?>
-
-    <label for="review">Review</label>
-    <input id="review" name="review" value="<?= isset($review) ? $review : '' ?>">
-    <?= isset($errors['review']) ? $errors['review'] : '' ?>
-
-    <label for="rating">Rating</label>
-    <select class="input" id="rating" name="rating">
-        <option value="5">5 ster</option>
-        <option value="4">4 ster</option>
-        <option value="3">3 ster</option>
-        <option value="2">2 ster</option>
-        <option value="1">1 ster</option>
-    </select>
-
-
-    <button type="submit" name="submit">Save</button>
-</form>
-<section>
+            <div class="formfield">
+                <label for="name">Naam</label>
+                <input id="name" name="name" placeholder="Vul hier uw naam in" value="<?= isset($name) ? $name : '' ?>">
+                <?= isset($errors['name']) ? $errors['name'] : '' ?>
+            </div>
+            <div class="formfield">
+                <label for="rating">Rating</label>
+                <select class="input" id="rating" name="rating">
+                    <option disabled="" selected="">Hoeveel sterren?</option>
+                    <option value="5">5 ster</option>
+                    <option value="4">4 ster</option>
+                    <option value="3">3 ster</option>
+                    <option value="2">2 ster</option>
+                    <option value="1">1 ster</option>
+                </select>
+            </div>
+            <div class="formfield">
+                <label for="title">Title</label>
+                <input id="title" name="title" placeholder="Geef uw review een titel" value="<?= isset($title) ? $title : '' ?>">
+                <?= isset($errors['title']) ? $errors['title'] : '' ?>
+            </div>
+            <div class="formfield">
+                <label for="review">Ervaring</label>
+                <textarea id="review" name="review" placeholder="Noteer hier uw ervaring" "></textarea>
+                <?= isset($errors['review']) ? $errors['review'] : '' ?>
+<!--                value="--><?php //= isset($review) ? $review : '' ?>
+            </div>
+            <button type="submit" name="submit">Verzend</button>
+        </form>
+    </main>
+<!-- <section>
     <div id="rating-stars-container">
         <p>Gemiddeld cijfer: <?= $roundedGrade ?></p>
         <div class="rating-stars" style="background-color: yellow; height: 5vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
@@ -131,6 +166,9 @@ mysqli_close($db)
         <p><?= htmlentities($review['title']) ?></p>
         <p><?= htmlentities($review['review']) ?></p>
     <?php } ?>
-</section>
+</section> -->
+    <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+    </footer>
 </body>
 </html>
