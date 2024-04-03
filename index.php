@@ -28,7 +28,7 @@ mysqli_close($db);
     <link rel="stylesheet" href="css/main-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
     <script src="js/global.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Homepage</title>
@@ -77,6 +77,7 @@ mysqli_close($db);
                             </p>
                             <div>
                                 <a class="link" href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                                <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                             </div>
                         </section>
                         <section>

@@ -55,6 +55,11 @@ p {
     margin: 2vh 0;
 }
 
+.favorite {
+    background-color: goldenrod;
+
+}
+
 .link {
     font-family: Comfortaa, sans-serif;
     font-size: 1.3rem;

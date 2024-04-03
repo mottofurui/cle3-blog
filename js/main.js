@@ -4,6 +4,7 @@ window.addEventListener("load", init);
 let restaurant;
 let reviewAdd;
 
+
 function init() {
     restaurant = document.getElementById("main-container");
     restaurant.addEventListener("click", restaurantInfoClickHandler);
