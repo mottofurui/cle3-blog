@@ -71,22 +71,14 @@ mysqli_close($db);
     <link rel="stylesheet" href="css/style.css">
     <title>Homepage</title>
 </head>
-<body>
+<body id="body">
     <a href="#main" class="skip">Ga naar Hoofdcontent</a>
     <nav>
         <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-        <div id="modal">
-            <div role="navigation" class="modal-content">
-                <button role="close" id="close">close</button>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-            </div>
-        </div>
+
     </header>
     <main id="main">
         <section class="searchbar">
@@ -168,5 +160,14 @@ mysqli_close($db);
 <footer>
     <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
 </footer>
+    <dialog id="modal">
+        <div id="modal-content">
+            <button id="close">close</button>
+            <a href="index.php">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
+        </div>
+    </dialog>
 </body>
 </html>

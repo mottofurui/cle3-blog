@@ -4,20 +4,22 @@ window.addEventListener("load", init);
 let modal;
 let dropdownButton;
 let modalCloseButton;
+let dialogContent;
 
 function init() {
     modal = document.getElementById("modal");
     dropdownButton = document.getElementById("modal-open");
     modalCloseButton = document.getElementById("close");
+    dialogContent = document.getElementById('modal-content')
 
-    dropdownButton.addEventListener("click", showModal);
+    dropdownButton.addEventListener("click", openDialog);
     modalCloseButton.addEventListener("click", closeModal);
 }
 
-function showModal(e) {
-    modal.style.display = "block";
+function openDialog(e) {
+    modal.showModal();
 }
 
 function closeModal(e) {
-    modal.style.display = "none";
+    modal.close();
 }

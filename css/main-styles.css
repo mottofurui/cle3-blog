@@ -39,41 +39,35 @@ nav {
 
 /* modal-styles */
 #modal {
-    display: none;
-    position: fixed;
-    z-index: 2;
-    overflow: auto;
     background-color: #fff4e3;
+    width: 100vw;
+    height: 100vh;
 }
 
-.modal-content {
+#modal-content {
     display: flex;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
 }
 
-.modal-content span {
+#modal-content a {
     background-color: #fff4e3;
-    padding: 2vh;
-    border-bottom: solid #bda786 0.3vh;
-}
-
-.modal-content a {
-    background-color: #fff4e3;
+    pointer-events: auto;
     padding: 2vh;
     border-bottom: solid #bda786 0.3vh;
     text-decoration: none;
     color: #170a00;
 }
 
-.modal-content a:hover, .modal-content a:active {
+#modal-content a:hover, #modal-content a:active {
     background-color: #062a1d;
     color: #fff4e3;
 }
 
 #close {
     text-align: left;
+    pointer-events: auto;
     font-size: 1rem;
     font-family: Comfortaa, sans-serif;
     background-color: #fff4e3;
