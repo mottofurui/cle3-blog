@@ -107,7 +107,7 @@ mysqli_close($db)
     </nav>
     <main>
         <div role="navigation" id="modal">
-            <div class="modal-content">
+            <div id="modal-content">
                 <span id="close">close</span>
                 <a href="index.php">reviews</a>
                 <a href="#">reviews</a>
