@@ -69,7 +69,7 @@ mysqli_close($db);
     <script src="js/main.js"></script>
     <script src="js/global.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Homepage</title>
+    <title>Homepagina</title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar Hoofdcontent</a>

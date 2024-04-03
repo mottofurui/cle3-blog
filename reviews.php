@@ -97,7 +97,7 @@ mysqli_close($db)
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
     <script src="js/global.js"></script>
-    <title>Document</title>
+    <title>Deel Ervaring</title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>

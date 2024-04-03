@@ -73,7 +73,7 @@ mysqli_close($db);
     <script src="js/global.js"></script>
     <script src="js/review.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <title>Restaurant naam</title>
+    <title><?= htmlentities($restaurant['name'])?></title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
