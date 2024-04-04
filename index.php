@@ -148,6 +148,7 @@ mysqli_close($db);
                         </div>
                         <div class="link">
                             <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                         </div>
                     </div>
                 </section>
