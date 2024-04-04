@@ -82,15 +82,6 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-        <div role="navigation" id="modal">
-            <div id="modal-content">
-                <span id="close">close</span>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-            </div>
-        </div>
         <h1><?= htmlentities($restaurant['name'])?></h1>
         <h2><?= htmlentities($restaurant['adress'])?>, <?= htmlentities($restaurant['city'])?></h2>
         <div class="panorama">
@@ -140,5 +131,16 @@ mysqli_close($db);
     <footer>
         <img class="logo" src="./img/restoramalogo.png" alt="logo">
     </footer>
+    <dialog id="modal">
+        <div id="modal-content">
+            <div class="modallogo">
+                <h2>Menu</h2>
+                <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
+            </div>
+            <a href="index.php">Homepagina</a>
+            <a href="#">EduPlaza</a>
+            <button id="close">Terug</button>
+        </div>
+    </dialog>
 </body>
 </html>
