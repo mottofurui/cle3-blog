@@ -113,7 +113,7 @@ mysqli_close($db);
             <p>er zijn <?= $count ?> reviews</p>
             <p><?= $roundedGrade ?> van de 5</p>
             <div id="rating-stars-container">
-                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
+                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
                 <div class="rating-stars-div"></div>
                 <img src="img/sterren.png" class="rating-stars-image">
             </div>

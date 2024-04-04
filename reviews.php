@@ -46,7 +46,8 @@ if (isset($_POST['submit'])) {
         // Als de query correct uitgevoerd wordt
         if (mysqli_query($db, $insertQuery)) {
             // Redirect naar reviews.php
-            header("location: https://localhost/cle3-blog/restaurantdetails.php?restaurant_id=$restaurantId");
+//            header("location: https://localhost/cle3-blog/restaurantdetails.php?restaurant_id=$restaurantId");
+            header('location: index.php');
             exit;
         } else {
             // Niet correct uitgevoerd
@@ -100,54 +101,54 @@ mysqli_close($db)
     <title>Document</title>
 </head>
 <body>
-    <a href="#main" class="skip">Ga naar hoofdcontent</a>
-    <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
-    </nav>
-    <main>
-        <div role="navigation" id="modal">
-            <div class="modal-content">
-                <span id="close">close</span>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-            </div>
+<a href="#main" class="skip">Ga naar hoofdcontent</a>
+<nav>
+    <img class="logo" src="./img/restoramalogo.png" alt="logo">
+    <i id="modal-open" class="fa-solid fa-bars"></i>
+</nav>
+<main>
+    <div role="navigation" id="modal">
+        <div class="modal-content">
+            <span id="close">close</span>
+            <a href="index.php">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
+            <a href="#">reviews</a>
         </div>
-        <h1>Laat uw ervaring achter</h1>
-        <form action="" method="post">
+    </div>
+    <h1>Laat uw ervaring achter</h1>
+    <form action="" method="post">
 
-            <div class="formfield">
-                <label for="name">Naam</label>
-                <input id="name" name="name" placeholder="Vul hier uw naam in" value="<?= isset($name) ? $name : '' ?>">
-                <?= isset($errors['name']) ? $errors['name'] : '' ?>
-            </div>
-            <div class="formfield">
-                <label for="rating">Rating</label>
-                <select class="input" id="rating" name="rating">
-                    <option disabled="" selected="">Hoeveel sterren?</option>
-                    <option value="5">5 ster</option>
-                    <option value="4">4 ster</option>
-                    <option value="3">3 ster</option>
-                    <option value="2">2 ster</option>
-                    <option value="1">1 ster</option>
-                </select>
-            </div>
-            <div class="formfield">
-                <label for="title">Title</label>
-                <input id="title" name="title" placeholder="Geef uw review een titel" value="<?= isset($title) ? $title : '' ?>">
-                <?= isset($errors['title']) ? $errors['title'] : '' ?>
-            </div>
-            <div class="formfield">
-                <label for="review">Ervaring</label>
-                <textarea id="review" name="review" placeholder="Noteer hier uw ervaring" "></textarea>
-                <?= isset($errors['review']) ? $errors['review'] : '' ?>
-<!--                value="--><?php //= isset($review) ? $review : '' ?>
-            </div>
-            <button type="submit" name="submit">Verzend</button>
-        </form>
-    </main>
+        <div class="formfield">
+            <label for="name">Naam</label>
+            <input id="name" name="name" placeholder="Vul hier uw naam in" value="<?= isset($name) ? $name : '' ?>">
+            <?= isset($errors['name']) ? $errors['name'] : '' ?>
+        </div>
+        <div class="formfield">
+            <label for="rating">Rating</label>
+            <select class="input" id="rating" name="rating">
+                <option disabled="" selected="">Hoeveel sterren?</option>
+                <option value="5">5 ster</option>
+                <option value="4">4 ster</option>
+                <option value="3">3 ster</option>
+                <option value="2">2 ster</option>
+                <option value="1">1 ster</option>
+            </select>
+        </div>
+        <div class="formfield">
+            <label for="title">Title</label>
+            <input id="title" name="title" placeholder="Geef uw review een titel" value="<?= isset($title) ? $title : '' ?>">
+            <?= isset($errors['title']) ? $errors['title'] : '' ?>
+        </div>
+        <div class="formfield">
+            <label for="review">Ervaring</label>
+            <textarea id="review" name="review" placeholder="Noteer hier uw ervaring" "></textarea>
+            <?= isset($errors['review']) ? $errors['review'] : '' ?>
+            <!--                value="--><?php //= isset($review) ? $review : '' ?>
+        </div>
+        <button type="submit" name="submit">Verzend</button>
+    </form>
+</main>
 <!-- <section>
     <div id="rating-stars-container">
         <p>Gemiddeld cijfer: <?= $roundedGrade ?></p>
@@ -157,18 +158,18 @@ mysqli_close($db)
     <?php foreach ($reviews as $index => $review) { ?>
         <p><?= htmlentities($review['name']) ?></p>
         <?php
-        // laat sterren zien met de hoeveelheid rating
-        $rating = $review['rating'];
-        for ($i = 0; $i < $rating; $i++) {
-            echo '★';
-        }
-        ?>
+    // laat sterren zien met de hoeveelheid rating
+    $rating = $review['rating'];
+    for ($i = 0; $i < $rating; $i++) {
+        echo '★';
+    }
+    ?>
         <p><?= htmlentities($review['title']) ?></p>
         <p><?= htmlentities($review['review']) ?></p>
     <?php } ?>
 </section> -->
-    <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
-    </footer>
+<footer>
+    <img class="logo" src="./img/restoramalogo.png" alt="logo">
+</footer>
 </body>
 </html>
