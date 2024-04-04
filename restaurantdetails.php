@@ -138,7 +138,7 @@ mysqli_close($db);
                 <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
             </div>
             <a href="index.php">Homepagina</a>
-            <a href="#">EduPlaza</a>
+            <a href="eduplaza.html">EduPlaza</a>
             <button id="close">Terug</button>
         </div>
     </dialog>

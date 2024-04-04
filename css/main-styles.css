@@ -71,6 +71,7 @@ nav {
     color: #170a00;
     font-size: 1.5rem;
     font-weight: bold;
+    border: solid 0.3vh #062a1d;
 }
 
 #modal-content a:hover, #modal-content a:active {
@@ -86,7 +87,7 @@ nav {
     background-color: #B4D7C2;
     padding: 3vh 3vw;
     margin: 1vh;
-    border: none;
+    border: solid 0.3vh #062a1d;
     text-decoration: none;
     color: #170a00;
     font-weight: bold;
@@ -112,7 +113,7 @@ footer {
 }
 
 /*
-    <!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -123,28 +124,32 @@ footer {
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
     <script src="js/global.js"></script>
-    <title>Document</title>
+    <title>Homepagina</title>
 </head>
-<body>
-    <a href="#main" class="skip">Ga naar hoofdcontent</a>
-       <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+<body id="body">
+    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
+    <nav>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
         <i id="modal-open" class="fa-solid fa-bars"></i>
-       </nav>
-       <main id="main">
-        <div role="navigation" id="modal">
-            <div id="modal-content">
-                <span id="close">close</span>
-                <a href="index.php">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
-                <a href="#">reviews</a>
+    </nav>
+    <header>
+    </header>
+    <main id="main">
+    </main>
+    <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
+    </footer>
+    <dialog id="modal">
+        <div id="modal-content">
+            <div class="modallogo">
+                <h2>Menu</h2>
+                <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
             </div>
+            <a href="index.php">Homepagina</a>
+            <a href="eduplaza.html">EduPlaza</a>
+            <button id="close">Terug</button>
         </div>
-       </main>
-       <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
-       </footer>
+    </dialog>
 </body>
 </html>
 */
