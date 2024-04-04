@@ -76,6 +76,17 @@ form select {
     padding: 3vw;
 }
 
+.fav-button {
+    font-family: Comfortaa, sans-serif;
+    font-size: 1.3rem;
+    background-color: #062a1d;
+    border: solid 0.3vh #062a1d;
+    color: #fff4e3;
+    min-width: 94vw;
+    padding: 3vw;
+    margin: 0 3vw;
+}
+
 .favorite {
     background-color: goldenrod;
 
