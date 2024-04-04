@@ -78,7 +78,6 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-
     </header>
     <main id="main">
         <section class="searchbar">
@@ -125,8 +124,8 @@ mysqli_close($db);
                                 <p><?= htmlentities($restaurant['adress']) ?></p>
                             <div class="link">
                                 <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                                <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                             </div>
+                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
                         </div>
                     </section>
                     <?php
@@ -150,6 +149,7 @@ mysqli_close($db);
                             <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
                             <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                         </div>
+                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
                     </div>
                 </section>
                 <?php
@@ -169,7 +169,7 @@ mysqli_close($db);
                 <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
             </div>
             <a href="index.php">Homepagina</a>
-            <a href="#">EduPlaza</a>
+            <a href="eduplaza.html">EduPlaza</a>
             <button id="close">Terug</button>
         </div>
     </dialog>

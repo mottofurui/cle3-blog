@@ -1,0 +1,31 @@
+h1, h2 {
+    font-size: 2.5rem;
+    margin: 3vh 3vw;
+}
+
+p, a {
+    font-size: 1.5rem;
+    margin: 3vh 3vw;
+}
+
+.article {
+    border-top: solid 0.7vh #bda786;
+    /*padding: 2.5vw;*/
+    width: 100vw;
+}
+
+.link {
+    font-family: Comfortaa, sans-serif;
+    font-size: 1.3rem;
+    background-color: #062a1d;
+    border: solid 0.3vh #bda786;
+    text-align: center;
+    padding: 2vh;
+    margin: 3vh 3vw;
+    /*max-width: 85vw;*/
+}
+
+a {
+    color: #fff4e3;
+    text-decoration: none;
+}
