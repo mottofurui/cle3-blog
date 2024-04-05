@@ -3,7 +3,6 @@
 session_start();
 //verbinding van database
 require_once 'includes/database.php';
-require_once 'includes/reviews-database.php';
 
 $ratingNumbers = [];
 
