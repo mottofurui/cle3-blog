@@ -74,8 +74,8 @@ mysqli_close($db);
 <body id="body">
     <a href="#main" class="skip">Ga naar Hoofdcontent</a>
     <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
         <p role="navigation" id="modal-open">Menu</p>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </nav>
     <header>
     </header>
@@ -159,14 +159,14 @@ mysqli_close($db);
     </section>
 </main>
 <footer>
-    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
+    <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     <a href="api.php" class="api">naar de google api!!</a>
 </footer>
     <dialog id="modal">
         <div id="modal-content">
             <div class="modallogo">
                 <h2>Menu</h2>
-                <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
+                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
             </div>
             <a href="index.php">Homepagina</a>
             <a href="eduplaza.html">EduPlaza</a>

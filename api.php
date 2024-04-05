@@ -78,41 +78,65 @@ mysqli_close($db);
     <title>Homepagina</title>
 </head>
 <body id="body">
-<a href="#main" class="skip">Ga naar Hoofdcontent</a>
-<nav>
-    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-    <i id="modal-open" class="fa-solid fa-bars"></i>
-</nav>
-<header>
-</header>
-<main id="main">
-    <section class="searchbar">
-        <form role="search">
-            <label for="searchbar">Zoek op tags</label>
+    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
+    <nav>
+        <p role="navigation" id="modal-open">Menu</p>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+    </nav>
+    <header>
+    </header>
+    <main id="main">
+        <section class="searchbar">
+            <form role="search">
+                <label for="searchbar">Zoek op tags</label>
+                <div>
+                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
+                    <button class="button" type="submit">Zoeken</button>
+                </div>
+            </form>
+        </section>
+        <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+            <label for="selectedCity">Zoek op stad</label>
             <div>
-                <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
-                <button class="button" type="submit">Zoeken</button>
+                <input id="autocomplete" type="text" name="selectedCity" placeholder="zoek op stad">
+                <input class="button" type="submit" name="Submit" value="Zoeken"/>
             </div>
         </form>
-    </section>
-    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
-        <label for="selectedCity">Zoek op stad</label>
-        <div>
-            <input id="autocomplete" type="text" name="selectedCity" placeholder="zoek op stad">
-            <input class="button" type="submit" name="Submit" value="Zoeken"/>
-        </div>
-    </form>
-    <section id="main-container">
-        <?php foreach ($restaurants as $restaurant) { ?>
-            <?php
-            if (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
-                $selectedCity = $_POST['selectedCity'];
-                if ($selectedCity == $restaurant['city']) {
+        <section id="main-container">
+            <?php foreach ($restaurants as $restaurant) { ?>
+                <?php
+                if (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+                    $selectedCity = $_POST['selectedCity'];
+                    if ($selectedCity == $restaurant['city']) {
+                        ?>
+                        <h1>Restaurants in <?= htmlentities($_POST['selectedCity']) ?></h1>
+                        <section class="border">
+                            <div class="restaurant">
+                                <h2><?= htmlentities($restaurant['name']) ?></h2>
+                                <div id="rating-stars-container">
+                                    <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
+                                        <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                    <?php } else {?>
+                                        <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                    <?php } ?>
+                                    <div class="rating-stars-div"></div>
+                                    <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+                                </div>
+                                <p><?= htmlentities($restaurant['adress']) ?></p>
+                                <div class="link">
+                                    <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                                    <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
+                                </div>
+                            </div>
+                        </section>
+                        <?php
+                    }
+                } else {
                     ?>
-                    <h1>Restaurants in <?= htmlentities($_POST['selectedCity']) ?></h1>
                     <section class="border">
                         <div class="restaurant">
                             <h2><?= htmlentities($restaurant['name']) ?></h2>
+                            <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
                             <div id="rating-stars-container">
                                 <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
                                     <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
@@ -122,55 +146,31 @@ mysqli_close($db);
                                 <div class="rating-stars-div"></div>
                                 <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                             </div>
-                            <p><?= htmlentities($restaurant['adress']) ?></p>
                             <div class="link">
                                 <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                                <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                             </div>
                         </div>
                     </section>
                     <?php
-                }
-            } else {
-                ?>
-                <section class="border">
-                    <div class="restaurant">
-                        <h2><?= htmlentities($restaurant['name']) ?></h2>
-                        <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
-                        <div id="rating-stars-container">
-                            <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
-                                <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                            <?php } else {?>
-                                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                            <?php } ?>
-                            <div class="rating-stars-div"></div>
-                            <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
-                        </div>
-                        <div class="link">
-                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                        </div>
-                    </div>
-                </section>
-                <?php
-            } ?>
+                } ?>
 
-        <?php } ?>
+            <?php } ?>
 
-    </section>
-</main>
-<footer>
-    <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-</footer>
-<dialog id="modal">
-    <div id="modal-content">
-        <div class="modallogo">
-            <h2>Menu</h2>
-            <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
+        </section>
+    </main>
+    <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+    </footer>
+    <dialog id="modal">
+        <div id="modal-content">
+            <div class="modallogo">
+                <h2>Menu</h2>
+                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
+            </div>
+            <a href="index.php">Homepagina</a>
+            <a href="eduplaza.html">EduPlaza</a>
+            <button id="close">Terug</button>
         </div>
-        <a href="index.php">Homepagina</a>
-        <a href="eduplaza.html">EduPlaza</a>
-        <button id="close">Terug</button>
-    </div>
-</dialog>
+    </dialog>
 </body>
 </html>

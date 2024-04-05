@@ -102,10 +102,10 @@ mysqli_close($db)
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
     <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
+        <p role="navigation" id="modal-open">Menu</p>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </nav>
-    <main>
+    <main id="main">
         <h1>Laat uw ervaring achter</h1>
         <form action="" method="post">
 
@@ -159,13 +159,13 @@ mysqli_close($db)
     <?php } ?>
 </section> -->
     <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </footer>
     <dialog id="modal">
         <div id="modal-content">
             <div class="modallogo">
                 <h2>Menu</h2>
-                <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
+                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
             </div>
             <a href="index.php">Homepagina</a>
             <a href="eduplaza.html">EduPlaza</a>
