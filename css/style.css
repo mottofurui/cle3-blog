@@ -88,8 +88,9 @@ form select {
 }
 
 .favorite {
-    background-color: goldenrod;
-
+    background-color: #B4D7C2;
+    color: #170a00;
+    font-weight: bold;
 }
 
 .link {
@@ -148,4 +149,14 @@ a {
     grid-row: 1;
     height: 10vh;
     padding-left: 10px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.api {
+    color: #170a00;
 }

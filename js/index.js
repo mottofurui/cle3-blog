@@ -27,13 +27,20 @@ function favoriteClickHandler(e) {
             delete favoriteList[favorite];
             console.log(`restaurant removed from favorites.`);
             e.target.classList.remove('favorite');
-
+            e.target.innerText = "Dit restaurant is geen favoriet";
 
         } else {
             // Add the exercise to the favorites list
             favoriteList[favorite] = favorite;
             console.log(`restaurant added to favorites.`);
             e.target.classList.add('favorite');
+            e.target.innerText = "Dit restaurant is uw favoriet"
+
+            // let favDiv = document.getElementById("restaurant");
+            //
+            // let favMessage = document.createElement('p');
+            // favMessage.innerText = "Dit restaurant is een favoriet";
+            // favDiv.append(favMessage)
         }
 
         // Save favorite exercises to localStorage
@@ -57,6 +64,7 @@ function loadFavorites() {
             const favoriteButton = document.querySelector(`[data-id="${favoriteId}"]`);
             if (favoriteButton) {
                 favoriteButton.classList.add('favorite');
+                favoriteButton.innerText = "Dit restaurant is uw favoriet"
             }
         }
     }

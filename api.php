@@ -68,6 +68,12 @@ mysqli_close($db);
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
     <script src="js/global.js"></script>
+    <script src="js/places-api.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZnWejld5cB6YkHZuIMHDRanLBDmCD8sU&loading&libraries=places&callback=initMap" async defer>
+    </script>
+
+
     <link rel="stylesheet" href="css/style.css">
     <title>Homepagina</title>
 </head>
@@ -92,12 +98,7 @@ mysqli_close($db);
         <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
             <label for="selectedCity">Zoek op stad</label>
             <div>
-                <select name="selectedCity" id="selectedCity">
-                    <option value="" selected>Alle steden</option>
-                    <?php foreach ($restaurants as $city) { ?>
-                        <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
-                    <?php } ?>
-                </select>
+                <input id="autocomplete" type="text" name="selectedCity" placeholder="zoek op stad">
                 <input class="button" type="submit" name="Submit" value="Zoeken"/>
             </div>
         </form>
@@ -122,46 +123,44 @@ mysqli_close($db);
                                     <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                                 </div>
                                 <p><?= htmlentities($restaurant['adress']) ?></p>
+                                <div class="link">
+                                    <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                                    <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
+                                </div>
+                            </div>
+                        </section>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <section class="border">
+                        <div class="restaurant">
+                            <h2><?= htmlentities($restaurant['name']) ?></h2>
+                            <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
+                            <div id="rating-stars-container">
+                                <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
+                                    <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } else {?>
+                                    <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } ?>
+                                <div class="rating-stars-div"></div>
+                                <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+                            </div>
                             <div class="link">
                                 <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
                             </div>
-                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
                         </div>
                     </section>
                     <?php
-                }
-            } else {
-                ?>
-                <section class="border">
-                    <div id="restaurant">
-                        <h2><?= htmlentities($restaurant['name']) ?></h2>
-                        <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
-                        <div id="rating-stars-container">
-                            <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
-                                <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                           <?php } else {?>
-                            <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                        <?php } ?>
-                            <div class="rating-stars-div"></div>
-                            <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
-                        </div>
-                        <div class="link">
-                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                        </div>
-                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Dit restaurant is geen favoriet</button>
-                    </div>
-                </section>
-                <?php
-            } ?>
+                } ?>
 
-        <?php } ?>
+            <?php } ?>
 
-    </section>
-</main>
-<footer>
-    <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
-    <a href="api.php" class="api">naar de google api!!</a>
-</footer>
+        </section>
+    </main>
+    <footer>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+    </footer>
     <dialog id="modal">
         <div id="modal-content">
             <div class="modallogo">

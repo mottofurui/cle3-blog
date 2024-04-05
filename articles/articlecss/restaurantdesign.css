@@ -1,0 +1,50 @@
+h1 {
+    font-size: 2.5rem;
+    margin: 4vh 3vw;
+    max-width: 100vw;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 3vh 3vw;
+}
+
+p {
+    font-size: 1.4rem;
+    margin: 3vh 3vw;
+}
+
+.panorama img {
+    height: 15vh;
+    width: 100vw;
+    object-fit: cover;
+    margin: 0;
+
+    border-top: solid 0.3vh #bda786;
+    border-bottom: solid 0.3vh #bda786;
+}
+
+.link {
+    border-top: solid 0.3vh #bda786;
+    padding: 6vh 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #170a00;
+    font-weight: bold;
+    margin: 3vh 3vw;
+    font-size: 1.1rem;
+}
+
+.back {
+    font-family: Comfortaa, sans-serif;
+    font-size: 1.3rem;
+    background-color: #062a1d;
+    color: #fff4e3;
+    border: solid 0.3vh #bda786;
+    margin: 3vw;
+    text-align: center;
+    padding: 2vh 8vw;
+}
