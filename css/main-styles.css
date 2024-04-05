@@ -43,6 +43,11 @@ nav {
 
 }
 
+#modal-open {
+    font-weight: bold;
+    margin: 2vh 1vw;
+}
+
 #modal-content {
     display: flex;
     flex-direction: column;

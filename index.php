@@ -75,7 +75,7 @@ mysqli_close($db);
     <a href="#main" class="skip">Ga naar Hoofdcontent</a>
     <nav>
         <img class="logo" src="./img/restoramalogo.png" alt="logo van de restorama app">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
+        <p id="modal-open">Menu</p>
     </nav>
     <header>
     </header>
