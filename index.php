@@ -133,7 +133,7 @@ mysqli_close($db);
             } else {
                 ?>
                 <section class="border">
-                    <div class="restaurant">
+                    <div id="restaurant">
                         <h2><?= htmlentities($restaurant['name']) ?></h2>
                         <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
                         <div id="rating-stars-container">
@@ -148,7 +148,7 @@ mysqli_close($db);
                         <div class="link">
                             <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
                         </div>
-                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
+                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Dit restaurant is geen favoriet</button>
                     </div>
                 </section>
                 <?php
