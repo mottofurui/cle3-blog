@@ -73,7 +73,7 @@ mysqli_close($db);
     <script src="js/global.js"></script>
     <script src="js/review.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <title>Restorama | <?= htmlentities($restaurant['name'])?></title>
+    <title>Restorama | <?= htmlentities($restaurant['restaurant_name'])?></title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
@@ -82,7 +82,7 @@ mysqli_close($db);
         <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </nav>
     <header>
-        <h1><?= htmlentities($restaurant['name'])?></h1>
+        <h1><?= htmlentities($restaurant['restaurant_name'])?></h1>
         <h2><?= htmlentities($restaurant['adress'])?>, <?= htmlentities($restaurant['city'])?></h2>
         <div class="panorama">
             <img src="./img/restopanorama.jpg" alt="restaurant-banner">
@@ -104,7 +104,7 @@ mysqli_close($db);
             <p>er zijn <?= $count ?> reviews</p>
             <p><?= $roundedGrade ?> van de 5</p>
             <div id="rating-stars-container">
-                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
+                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
                 <div class="rating-stars-div"></div>
                 <img src="img/sterren.png" class="rating-stars-image">
             </div>

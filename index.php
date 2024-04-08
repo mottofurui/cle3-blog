@@ -12,6 +12,7 @@ $roundedById = [];
 $query = "SELECT * FROM restaurants";
 $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
 
+
 // Store the $restaurants in an array
 $restaurants = [];
 while ($row = mysqli_fetch_assoc($result)) {
@@ -21,8 +22,48 @@ while ($row = mysqli_fetch_assoc($result)) {
 //informatie uit de database omzetten naar php array
 $restaurant = mysqli_fetch_assoc($result);
 
+// Fetching all cities
+$dataQuery = "SELECT * FROM cities";
+$cityResult = mysqli_query($db, $dataQuery) or die('Error ' . mysqli_error($db) . ' with query ' . $dataQuery);
+
+$cities = [];
+while ($cityRow = mysqli_fetch_assoc($cityResult)) {
+    $cities[] = $cityRow;
+}
+
+//informatie uit de database ophalen op basis van Id
+$query = "SELECT * FROM tags";
+$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+
+
+// Store the $tags in an array
+$taglist = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $tagslist[] = $row;
+}
+
+
+//error handling
+if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
+    $selectedTag = $_POST['selectedTag'];
+    //informatie uit de database ophalen op basis van Id
+    $query = "SELECT *, t.tag_id as tag, rt.tag_id as restauranttag, rt.restaurant_id 
+FROM restaurants as r
+JOIN restaurant_tags as rt ON r.restaurant_id = rt.restaurant_id
+JOIN tags as t ON t.tag_id = rt.tag_id
+WHERE t.tag_id = '$selectedTag'";
+    $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+}
+
+
+// Store the $tags in an array
+$tags = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $tags[] = $row;
+}
+
 // Select all the reviews from the database
-for ($i = 1; $i < sizeof($restaurants) +1; $i++) {
+for ($i = 1; $i < sizeof($restaurants) + 1; $i++) {
     $query = "SELECT * FROM reviews WHERE restaurant_id = $i";
     $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 
@@ -72,83 +113,134 @@ mysqli_close($db);
     <title>Restorama</title>
 </head>
 <body id="body">
-    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
-    <nav>
-        <p role="navigation" id="modal-open">Menu</p>
-        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
-    </nav>
-    <header>
-    </header>
-    <main id="main">
-        <section class="searchbar">
-            <form role="search">
-                <label for="searchbar">Zoek op tags</label>
-                <div>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
-                    <button class="button" type="submit">Zoeken</button>
-                </div>
-            </form>
-        </section>
-        <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
-            <label for="selectedCity">Zoek op stad</label>
-            <div>
-                <select name="selectedCity" id="selectedCity">
-                    <option value="" selected>Alle steden</option>
-                    <?php foreach ($restaurants as $city) { ?>
-                        <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
-                    <?php } ?>
-                </select>
-                <input class="button" type="submit" name="Submit" value="Zoeken"/>
-            </div>
-        </form>
-        <section id="main-container">
-            <?php foreach ($restaurants as $restaurant) { ?>
-                <?php
-                if (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
-                    $selectedCity = $_POST['selectedCity'];
-                    if ($selectedCity == $restaurant['city']) {
-                        ?>
-                        <h1>Restaurants in <?= htmlentities($_POST['selectedCity']) ?></h1>
-                        <section class="border">
-                            <div class="restaurant">
-                                <h2><?= htmlentities($restaurant['name']) ?></h2>
-                                <div id="rating-stars-container">
-                                    <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
-                                        <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                                    <?php } else {?>
-                                        <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                                    <?php } ?>
-                                    <div class="rating-stars-div"></div>
-                                    <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
-                                </div>
-                                <p><?= htmlentities($restaurant['adress']) ?></p>
-                            <div class="link">
-                                <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+<a href="#main" class="skip">Ga naar Hoofdcontent</a>
+<nav>
+    <p role="navigation" id="modal-open">Menu</p>
+    <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+</nav>
+<header>
+</header>
+<main id="main">
+    <!--        <section class="searchbar">-->
+    <!--            <form role="search">-->
+    <!--                <label for="searchbar">Zoek op tags</label>-->
+    <!--                <div>-->
+    <!--                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">-->
+    <!--                    <button class="button" type="submit">Zoeken</button>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <label for="selectedTag">Zoek op tags</label>
+        <div>
+            <select name="selectedTag" id="selectedTag">
+                <option value="" selected>Alle tags</option>
+                <?php foreach ($tagslist as $tag) { ?>
+                    <option value="<?= $tag['tag_id'] ?>"><?= $tag['tag_name'] ?></option>
+                <?php } ?>
+            </select>
+            <input class="button" type="submit" name="Submit" value="Zoeken"/>
+        </div>
+    </form>
+    <!--        </section>-->
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <label for="selectedCity">Zoek op stad</label>
+        <div>
+            <select name="selectedCity" id="selectedCity">
+                <option value="" selected>Alle steden</option>
+                <?php foreach ($cities as $city) { ?>
+                    <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
+                <?php } ?>
+            </select>
+            <input class="button" type="submit" name="Submit" value="Zoeken"/>
+        </div>
+    </form>
+    <section id="main-container">
+        <?php foreach ($tags as $tag) { ?>
+            <?php
+            //als is gevuld word $selectedTag aangemaakt met de tag name als value
+            if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
+                $selectedTag = $_POST['selectedTag'];
+                if ($selectedTag == $tag['tag_id']) {
+                    ?>
+                    <h1>Restaurants in <?= htmlentities($_POST['selectedTag']) ?></h1>
+                    <section class="border">
+                        <div class="restaurant">
+                            <h2><?= htmlentities($tag['restaurant_name']) ?></h2>
+                            <div id="rating-stars-container">
+                                <?php if ($roundedById[$tag['restaurant_id'] - 1] === 0) { ?>
+                                    <div class="rating-stars"
+                                         style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } else { ?>
+                                    <div class="rating-stars"
+                                         style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } ?>
+                                <div class="rating-stars-div"></div>
+                                <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                             </div>
-                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
+                            <p><?= htmlentities($tag['adress']) ?></p>
+                            <div class="link">
+                                <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer
+                                    informatie</a>
+                            </div>
+                            <button class="button" data-id=<?= $tag['restaurant_id'] ?>>Favoriet</button>
                         </div>
                     </section>
+
                     <?php
                 }
+            } elseif (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+                $selectedCity = $_POST['selectedCity'];
+                if ($selectedCity == $restaurant['city']) {
+                    ?>
+                    <h1>Restaurants in <?= htmlentities($_POST['selectedCity']) ?></h1>
+                    <section class="border">
+                        <div class="restaurant">
+                            <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
+                            <div id="rating-stars-container">
+                                <?php if ($roundedById[$restaurant['restaurant_id'] - 1] === 0) { ?>
+                                    <div class="rating-stars"
+                                         style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } else { ?>
+                                    <div class="rating-stars"
+                                         style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } ?>
+                                <div class="rating-stars-div"></div>
+                                <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+                            </div>
+                            <p><?= htmlentities($restaurant['adress']) ?></p>
+                            <div class="link">
+                                <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
+                                    informatie</a>
+                            </div>
+                            <button class="button" data-id=<?= $restaurant['restaurant_id'] ?>>Favoriet</button>
+                        </div>
+                    </section>
+
+                    <?php
+                }
+
             } else {
                 ?>
                 <section class="border">
-                    <div id="restaurant">
-                        <h2><?= htmlentities($restaurant['name']) ?></h2>
+                    <div class="restaurant">
+                        <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
                         <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
                         <div id="rating-stars-container">
-                            <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
-                                <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                           <?php } else {?>
-                            <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                        <?php } ?>
+                            <?php if ($roundedById[$restaurant['restaurant_id'] - 1] === 0) { ?>
+                                <div class="rating-stars"
+                                     style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                            <?php } else { ?>
+                                <div class="rating-stars"
+                                     style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                            <?php } ?>
                             <div class="rating-stars-div"></div>
                             <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                         </div>
                         <div class="link">
-                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
+                                informatie</a>
                         </div>
-                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Dit restaurant is geen favoriet</button>
+                        <button class="fav-button" data-id=<?= $restaurant['restaurant_id'] ?>>Favoriet</button>
                     </div>
                 </section>
                 <?php
@@ -162,16 +254,16 @@ mysqli_close($db);
     <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     <a href="api.php" class="api">naar de google api!!</a>
 </footer>
-    <dialog id="modal">
-        <div id="modal-content">
-            <div class="modallogo">
-                <h2>Menu</h2>
-                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
-            </div>
-            <a href="index.php">Homepagina</a>
-            <a href="eduplaza.html">EduPlaza</a>
-            <button id="close">Terug</button>
+<dialog id="modal">
+    <div id="modal-content">
+        <div class="modallogo">
+            <h2>Menu</h2>
+            <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
         </div>
-    </dialog>
+        <a href="index.php">Homepagina</a>
+        <a href="eduplaza.html">EduPlaza</a>
+        <button id="close">Terug</button>
+    </div>
+</dialog>
 </body>
 </html>
