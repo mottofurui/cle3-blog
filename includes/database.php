@@ -1,13 +1,13 @@
 <?php
-$host       = "stud.hosted.hr.nl";
-$user       = "1066431";
-$password   = "queifede";
-$database   = "1066431";
+//$host       = "stud.hosted.hr.nl";
+//$user       = "1066431";
+//$password   = "queifede";
+//$database   = "1066431";
 //
-//$host       = "localhost";
-//$user       = "root";
-//$password   = "";
-//$database   = "cle_33";
+$host       = "localhost";
+$user       = "root";
+$password   = "";
+$database   = "cle_33";
 
 $mapsApiKey = "AIzaSyAZnWejld5cB6YkHZuIMHDRanLBDmCD8sU";
 

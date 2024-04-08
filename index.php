@@ -171,18 +171,22 @@ mysqli_close($db);
                         <section class="border">
                             <div class="restaurant">
                                 <h2><?= htmlentities($tag['restaurant_name']) ?></h2>
+                                <p><?= htmlentities($tag['adress']) ?>, <?= htmlentities($tag['city']) ?></p>
+                                <p><?= $roundedById[$tag['restaurant_id'] - 1] ?> van de 5 sterren</p>
                                 <div id="rating-stars-container">
                                     <?php if ($roundedById[$tag['restaurant_id'] - 1] === 0) { ?>
                                         <div class="rating-stars"
-                                             style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                                    <?php } else { ?>
+                                             style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10 ?>%;"></div>
+                                    <?php } else if ($roundedById[$tag['restaurant_id'] - 1] < 2.5){ ?>
                                         <div class="rating-stars"
-                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10.3 ?>%;"></div>
+                                    <?php } else {?>
+                                        <div class="rating-stars"
+                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10 ?>%;"></div>
                                     <?php } ?>
                                     <div class="rating-stars-div"></div>
                                     <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                                 </div>
-                                <p><?= htmlentities($tag['adress']) ?>, <?= htmlentities($tag['city']) ?></p>
                                 <div class="link">
                                     <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer
                                         informatie</a>
@@ -206,18 +210,22 @@ mysqli_close($db);
                         <section class="border">
                             <div class="restaurant">
                                 <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
+                                <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
+                                <p><?= $roundedById[$restaurant['restaurant_id'] - 1] ?> van de 5 sterren</p>
                                 <div id="rating-stars-container">
                                     <?php if ($roundedById[$restaurant['restaurant_id'] - 1] === 0) { ?>
                                         <div class="rating-stars"
-                                             style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                                    <?php } else { ?>
+                                             style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10 ?>%;"></div>
+                                    <?php } else if ($roundedById[$restaurant['restaurant_id'] - 1] < 2.5){ ?>
                                         <div class="rating-stars"
-                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10.3 ?>%;"></div>
+                                    <?php } else {?>
+                                        <div class="rating-stars"
+                                             style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 2) * 10 ?>%;"></div>
                                     <?php } ?>
                                     <div class="rating-stars-div"></div>
                                     <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                                 </div>
-                                <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
                                 <div class="link">
                                     <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
                                         informatie</a>
@@ -241,6 +249,7 @@ mysqli_close($db);
                         <div class="restaurant">
                             <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
                             <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
+                            <p><?= $roundedById[$restaurant['restaurant_id'] - 1] ?> van de 5 sterren</p>
                             <div id="rating-stars-container">
                                 <?php if ($roundedById[$restaurant['restaurant_id'] - 1] === 0) { ?>
                                     <div class="rating-stars"
