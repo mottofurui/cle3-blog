@@ -2,7 +2,9 @@
 $host       = "localhost";
 $user       = "root";
 $password   = "";
-$database   = "cle_3";
+$database   = "cle3";
+
+$mapsApiKey = "AIzaSyAZnWejld5cB6YkHZuIMHDRanLBDmCD8sU";
 
 
 

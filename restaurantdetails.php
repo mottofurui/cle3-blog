@@ -3,7 +3,6 @@
 session_start();
 //verbinding van database
 require_once 'includes/database.php';
-require_once 'includes/reviews-database.php';
 
 $ratingNumbers = [];
 
@@ -78,8 +77,8 @@ mysqli_close($db);
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
     <nav>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
-        <i id="modal-open" class="fa-solid fa-bars"></i>
+        <p role="navigation" id="modal-open">Menu</p>
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </nav>
     <header>
         <h1><?= htmlentities($restaurant['restaurant_name'])?></h1>
@@ -104,7 +103,7 @@ mysqli_close($db);
             <p>er zijn <?= $count ?> reviews</p>
             <p><?= $roundedGrade ?> van de 5</p>
             <div id="rating-stars-container">
-                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 1.96) * 10 ?>%;"></div>
+                <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedGrade * 2) * 10 ?>%;"></div>
                 <div class="rating-stars-div"></div>
                 <img src="img/sterren.png" class="rating-stars-image">
             </div>
@@ -129,13 +128,13 @@ mysqli_close($db);
         </section>
     </main>
     <footer>
-        <img class="logo" src="./img/restoramalogo.png" alt="logo">
+        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     </footer>
     <dialog id="modal">
         <div id="modal-content">
             <div class="modallogo">
                 <h2>Menu</h2>
-                <img src="./img/restoramalogo.png" alt="logo van de restorama app" class="modlogo">
+                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
             </div>
             <a href="index.php">Homepagina</a>
             <a href="eduplaza.html">EduPlaza</a>
