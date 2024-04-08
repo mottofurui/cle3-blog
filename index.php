@@ -187,9 +187,11 @@ mysqli_close($db);
                                     <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer
                                         informatie</a>
                                 </div>
+                                <div class="buttonContainer">
                                 <button class="fav-button" data-id=<?= $roundedById[$tag['restaurant_id']] ?>> Dit restaurant is geen favoriet</button>
                             </div>
-                        </section>
+                        </div>
+                    </section>
 
                         <?php
                     }
@@ -220,11 +222,13 @@ mysqli_close($db);
                                     <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer
                                         informatie</a>
                                 </div>
+                                <div class="buttonContainer">
                                 <button class="fav-button" data-id=<?= $restaurant['restaurant_id'] ?>>Dit restaurant is
                                     geen favoriet
                                 </button>
                             </div>
-                        </section>
+                        </div>
+                    </section>
 
                         <?php
                     }

@@ -76,6 +76,11 @@ form select {
     padding: 3vw;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
 .fav-button {
     font-family: Comfortaa, sans-serif;
     font-size: 1.3rem;
@@ -121,7 +126,6 @@ a {
 
 .restaurant button {
     width: 90vw;
-    height: 7vh;
 }
 
 #rating-stars-container {
