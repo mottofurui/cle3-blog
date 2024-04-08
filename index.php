@@ -22,6 +22,15 @@ while ($row = mysqli_fetch_assoc($result)) {
 //informatie uit de database omzetten naar php array
 $restaurant = mysqli_fetch_assoc($result);
 
+// Fetching all cities
+$dataQuery = "SELECT * FROM cities";
+$cityResult = mysqli_query($db, $dataQuery) or die('Error ' . mysqli_error($db) . ' with query ' . $dataQuery);
+
+$cities = [];
+while ($cityRow = mysqli_fetch_assoc($cityResult)) {
+    $cities[] = $cityRow;
+}
+
 //informatie uit de database ophalen op basis van Id
 $query = "SELECT * FROM tags";
 $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
@@ -47,8 +56,6 @@ WHERE t.tag_id = '$selectedTag'";
 }
 
 
-
-
 // Store the $tags in an array
 $tags = [];
 while ($row = mysqli_fetch_assoc($result)) {
@@ -56,7 +63,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 // Select all the reviews from the database
-for ($i = 1; $i < sizeof($restaurants) +1; $i++) {
+for ($i = 1; $i < sizeof($restaurants) + 1; $i++) {
     $query = "SELECT * FROM reviews WHERE restaurant_id = $i";
     $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 
@@ -106,48 +113,49 @@ mysqli_close($db);
     <title>Homepagina</title>
 </head>
 <body id="body">
-    <a href="#main" class="skip">Ga naar Hoofdcontent</a>
-    <nav>
-        <p role="navigation" id="modal-open">Menu</p>
-        <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
-    </nav>
-    <header>
-    </header>
-    <main id="main">
-<!--        <section class="searchbar">-->
-<!--            <form role="search">-->
-<!--                <label for="searchbar">Zoek op tags</label>-->
-<!--                <div>-->
-<!--                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">-->
-<!--                    <button class="button" type="submit">Zoeken</button>-->
-<!--                </div>-->
-<!--            </form>-->
-            <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
-                <label for="selectedTag">Zoek op tags</label>
-                <div>
-                    <select name="selectedTag" id="selectedTag">
-                        <option value="" selected>Alle tags</option>
-                        <?php foreach ($tagslist as $tag) { ?>
-                            <option value="<?= $tag['tag_id'] ?>"><?= $tag['tag_name'] ?></option>
-                        <?php } ?>
-                    </select>
-                    <input class="button" type="submit" name="Submit" value="Zoeken"/>
-                </div>
-            </form>
-<!--        </section>-->
-        <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
-            <label for="selectedCity">Zoek op stad</label>
-            <div>
-                <select name="selectedCity" id="selectedCity">
-                    <option value="" selected>Alle steden</option>
-                    <?php foreach ($restaurants as $city) { ?>
-                        <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
-                    <?php } ?>
-                </select>
-                <input class="button" type="submit" name="Submit" value="Zoeken"/>
-            </div>
-        </form>
-        <section id="main-container">
+<a href="#main" class="skip">Ga naar Hoofdcontent</a>
+<nav>
+    <p role="navigation" id="modal-open">Menu</p>
+    <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+</nav>
+<header>
+</header>
+<main id="main">
+    <!--        <section class="searchbar">-->
+    <!--            <form role="search">-->
+    <!--                <label for="searchbar">Zoek op tags</label>-->
+    <!--                <div>-->
+    <!--                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">-->
+    <!--                    <button class="button" type="submit">Zoeken</button>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <label for="selectedTag">Zoek op tags</label>
+        <div>
+            <select name="selectedTag" id="selectedTag">
+                <option value="" selected>Alle tags</option>
+                <?php foreach ($tagslist as $tag) { ?>
+                    <option value="<?= $tag['tag_id'] ?>"><?= $tag['tag_name'] ?></option>
+                <?php } ?>
+            </select>
+            <input class="button" type="submit" name="Submit" value="Zoeken"/>
+        </div>
+    </form>
+    <!--        </section>-->
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <label for="selectedCity">Zoek op stad</label>
+        <div>
+            <select name="selectedCity" id="selectedCity">
+                <option value="" selected>Alle steden</option>
+                <?php foreach ($cities as $city) { ?>
+                    <option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
+                <?php } ?>
+            </select>
+            <input class="button" type="submit" name="Submit" value="Zoeken"/>
+        </div>
+    </form>
+    <section id="main-container">
+        <?php foreach ($tags as $tag) { ?>
             <?php
             //als is gevuld word $selectedTag aangemaakt met de tag name als value
             if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
@@ -245,16 +253,16 @@ mysqli_close($db);
     <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
     <a href="api.php" class="api">naar de google api!!</a>
 </footer>
-    <dialog id="modal">
-        <div id="modal-content">
-            <div class="modallogo">
-                <h2>Menu</h2>
-                <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
-            </div>
-            <a href="index.php">Homepagina</a>
-            <a href="eduplaza.html">EduPlaza</a>
-            <button id="close">Terug</button>
+<dialog id="modal">
+    <div id="modal-content">
+        <div class="modallogo">
+            <h2>Menu</h2>
+            <img src="./img/restoramalogo.png" alt="Restorama logo" class="modlogo">
         </div>
-    </dialog>
+        <a href="index.php">Homepagina</a>
+        <a href="eduplaza.html">EduPlaza</a>
+        <button id="close">Terug</button>
+    </div>
+</dialog>
 </body>
 </html>
