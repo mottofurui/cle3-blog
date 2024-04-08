@@ -110,7 +110,7 @@ mysqli_close($db);
     <script src="js/index.js"></script>
     <script src="js/global.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Homepagina</title>
+    <title>Restorama</title>
 </head>
 <body id="body">
 <a href="#main" class="skip">Ga naar Hoofdcontent</a>

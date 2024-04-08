@@ -3,6 +3,7 @@
 session_start();
 //verbinding van database
 require_once 'includes/database.php';
+//require_once 'includes/reviews-database.php';
 
 $ratingNumbers = [];
 
@@ -86,7 +87,7 @@ mysqli_close($db);
     <script src="js/global.js"></script>
     <script src="js/review.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <title><?= htmlentities($restaurant['restaurant_name'])?></title>
+    <title>Restorama | <?= htmlentities($restaurant['restaurant_name'])?></title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
