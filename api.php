@@ -69,10 +69,6 @@ mysqli_close($db);
     <script src="js/index.js"></script>
     <script src="js/global.js"></script>
     <script src="js/places-api.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZnWejld5cB6YkHZuIMHDRanLBDmCD8sU&loading&libraries=places&callback=initMap" async defer>
-    </script>
-
 
     <link rel="stylesheet" href="css/style.css">
     <title>Homepagina</title>
