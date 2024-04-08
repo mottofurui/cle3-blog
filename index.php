@@ -37,15 +37,16 @@ while ($row = mysqli_fetch_assoc($result)) {
 //error handling
 if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
     $selectedTag = $_POST['selectedTag'];
-}
-
-//informatie uit de database ophalen op basis van Id
-$query = "SELECT *, t.tag_id as tag, rt.tag_id as restauranttag, rt.restaurant_id 
+    //informatie uit de database ophalen op basis van Id
+    $query = "SELECT *, t.tag_id as tag, rt.tag_id as restauranttag, rt.restaurant_id 
 FROM restaurants as r
 JOIN restaurant_tags as rt ON r.restaurant_id = rt.restaurant_id
 JOIN tags as t ON t.tag_id = rt.tag_id
 WHERE t.tag_id = '$selectedTag'";
-$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+    $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+}
+
+
 
 
 // Store the $tags in an array
