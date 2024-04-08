@@ -29,6 +29,20 @@ if (mysqli_num_rows($result) != 1) {
 //informatie uit de database omzetten naar php array
 $restaurant = mysqli_fetch_assoc($result);
 
+//tag info halen uit database
+$query = "SELECT *, t.tag_id as tag, rt.tag_id as restauranttag, rt.restaurant_id 
+FROM restaurants as r
+JOIN restaurant_tags as rt ON r.restaurant_id = rt.restaurant_id
+JOIN tags as t ON t.tag_id = rt.tag_id
+WHERE rt.restaurant_id = '$restaurantId'";
+$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+
+$taglist = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $taglist[] = $row;
+}
+
+//var_dump($taglist);
 // Select all the reviews from the database
 $query = "SELECT * FROM reviews WHERE restaurant_id = $restaurantId";
 $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
@@ -93,9 +107,9 @@ mysqli_close($db);
             <p><?= htmlentities($restaurant['info'])?></p>
             <h3>Tags</h3>
             <ul>
-                <li>Craft Beer</li>
-                <li>Burgers</li>
-                <li>Accessible</li>
+                <?php foreach ($taglist as $tag) { ?>
+                <li><?= htmlentities($tag['tag_name'])?></li>
+                <?php } ?>
             </ul>
         </section>
         <section id="reviews">

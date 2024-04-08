@@ -148,11 +148,11 @@ mysqli_close($db);
             </div>
         </form>
         <section id="main-container">
-            <?php foreach ($tags as $tag) { ?>
-                <?php
-                //als is gevuld word $selectedTag aangemaakt met de tag name als value
-                if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
-                    $selectedTag = $_POST['selectedTag'];
+            <?php
+            //als is gevuld word $selectedTag aangemaakt met de tag name als value
+            if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
+                $selectedTag = $_POST['selectedTag'];
+                foreach ($tags as $tag) {
                     if ($selectedTag == $tag['tag_id']) {
                         ?>
                         <h1>Restaurants in <?= htmlentities($_POST['selectedTag']) ?></h1>
@@ -169,17 +169,20 @@ mysqli_close($db);
                                     <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                                 </div>
                                 <p><?= htmlentities($tag['adress']) ?></p>
-                            <div class="link">
-                                <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer informatie</a>
+                                <div class="link">
+                                    <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer informatie</a>
+                                </div>
+                                <button class="button" data-id=<?=$tag['restaurant_id']?>>Favoriet</button>
                             </div>
-                            <button class="button" data-id=<?=$tag['restaurant_id']?>>Favoriet</button>
-                        </div>
-                    </section>
+                        </section>
 
-                    <?php
+                        <?php
+                    }
                 }
             }
-                elseif (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+            // Handle selectedCity case
+            elseif (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+                foreach ($restaurants as $restaurant) {
                     $selectedCity = $_POST['selectedCity'];
                     if ($selectedCity == $restaurant['city']) {
                         ?>
@@ -206,35 +209,37 @@ mysqli_close($db);
 
                         <?php
                     }
-
                 }
-                else {
-                ?>
-                <section class="border">
-                    <div class="restaurant">
-                        <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
-                        <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
-                        <div id="rating-stars-container">
-                            <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
-                                <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                           <?php } else {?>
-                            <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
-                        <?php } ?>
-                            <div class="rating-stars-div"></div>
-                            <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+            }
+            // Handle the case when neither selectedTag nor selectedCity is set
+            else {
+                foreach ($restaurants as $restaurant) {
+                    ?>
+                    <section class="border">
+                        <div class="restaurant">
+                            <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
+                            <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
+                            <div id="rating-stars-container">
+                                <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
+                                    <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } else {?>
+                                    <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                <?php } ?>
+                                <div class="rating-stars-div"></div>
+                                <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+                            </div>
+                            <div class="link">
+                                <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                            </div>
+                            <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Dit restaurant is geen favoriet</button>
                         </div>
-                        <div class="link">
-                            <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                        </div>
-                        <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Dit restaurant is geen favoriet</button>
-                    </div>
-                </section>
-                <?php
-            } ?>
+                    </section>
+                    <?php
+                }
+            }
+            ?>
 
-        <?php } ?>
-
-    </section>
+        </section>
 </main>
 <footer>
     <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
