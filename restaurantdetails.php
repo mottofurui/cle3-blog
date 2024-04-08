@@ -73,7 +73,7 @@ mysqli_close($db);
     <script src="js/global.js"></script>
     <script src="js/review.js"></script>
     <script src="https://kit.fontawesome.com/915daa22f2.js" crossorigin="anonymous"></script>
-    <title><?= htmlentities($restaurant['name'])?></title>
+    <title><?= htmlentities($restaurant['restaurant_name'])?></title>
 </head>
 <body>
     <a href="#main" class="skip">Ga naar hoofdcontent</a>
@@ -82,7 +82,7 @@ mysqli_close($db);
         <i id="modal-open" class="fa-solid fa-bars"></i>
     </nav>
     <header>
-        <h1><?= htmlentities($restaurant['name'])?></h1>
+        <h1><?= htmlentities($restaurant['restaurant_name'])?></h1>
         <h2><?= htmlentities($restaurant['adress'])?>, <?= htmlentities($restaurant['city'])?></h2>
         <div class="panorama">
             <img src="./img/restopanorama.jpg" alt="restaurant-banner">

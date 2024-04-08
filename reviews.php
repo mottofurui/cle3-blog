@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
 
         //insert query opbouwen
-        $insertQuery = "INSERT INTO `reviews`(`id`, `restaurant_id`, `name`, `title`, `review`, `rating`) VALUES ('', '$restaurantId', '$name', '$title', '$review', '$rating')";
+        $insertQuery = "INSERT INTO `reviews`(`restaurant_id`, `name`, `title`, `review`, `rating`) VALUES ('$restaurantId', '$name', '$title', '$review', '$rating')";
         // Als de query correct uitgevoerd wordt
         if (mysqli_query($db, $insertQuery)) {
             // Redirect naar reviews.php

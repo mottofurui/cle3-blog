@@ -12,6 +12,7 @@ $roundedById = [];
 $query = "SELECT * FROM restaurants";
 $result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
 
+
 // Store the $restaurants in an array
 $restaurants = [];
 while ($row = mysqli_fetch_assoc($result)) {
@@ -20,6 +21,38 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 //informatie uit de database omzetten naar php array
 $restaurant = mysqli_fetch_assoc($result);
+
+//informatie uit de database ophalen op basis van Id
+$query = "SELECT * FROM tags";
+$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+
+
+// Store the $tags in an array
+$taglist = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $tagslist[] = $row;
+}
+
+
+//error handling
+if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
+    $selectedTag = $_POST['selectedTag'];
+}
+
+//informatie uit de database ophalen op basis van Id
+$query = "SELECT *, t.tag_id as tag, rt.tag_id as restauranttag, rt.restaurant_id 
+FROM restaurants as r
+JOIN restaurant_tags as rt ON r.restaurant_id = rt.restaurant_id
+JOIN tags as t ON t.tag_id = rt.tag_id
+WHERE t.tag_id = '$selectedTag'";
+$result = mysqli_query($db, $query) or die('error: ' . mysqli_error($db));
+
+
+// Store the $tags in an array
+$tags = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $tags[] = $row;
+}
 
 // Select all the reviews from the database
 for ($i = 1; $i < sizeof($restaurants) +1; $i++) {
@@ -80,15 +113,27 @@ mysqli_close($db);
     <header>
     </header>
     <main id="main">
-        <section class="searchbar">
-            <form role="search">
-                <label for="searchbar">Zoek op tags</label>
+<!--        <section class="searchbar">-->
+<!--            <form role="search">-->
+<!--                <label for="searchbar">Zoek op tags</label>-->
+<!--                <div>-->
+<!--                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">-->
+<!--                    <button class="button" type="submit">Zoeken</button>-->
+<!--                </div>-->
+<!--            </form>-->
+            <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
+                <label for="selectedTag">Zoek op tags</label>
                 <div>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Bijv. dimbaar licht">
-                    <button class="button" type="submit">Zoeken</button>
+                    <select name="selectedTag" id="selectedTag">
+                        <option value="" selected>Alle tags</option>
+                        <?php foreach ($tagslist as $tag) { ?>
+                            <option value="<?= $tag['tag_id'] ?>"><?= $tag['tag_name'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <input class="button" type="submit" name="Submit" value="Zoeken"/>
                 </div>
             </form>
-        </section>
+<!--        </section>-->
         <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
             <label for="selectedCity">Zoek op stad</label>
             <div>
@@ -102,16 +147,45 @@ mysqli_close($db);
             </div>
         </form>
         <section id="main-container">
-            <?php foreach ($restaurants as $restaurant) { ?>
+            <?php foreach ($tags as $tag) { ?>
                 <?php
-                if (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
+                //als is gevuld word $selectedTag aangemaakt met de tag name als value
+                if (isset($_POST['selectedTag']) && !empty($_POST['selectedTag'])) {
+                    $selectedTag = $_POST['selectedTag'];
+                    if ($selectedTag == $tag['tag_id']) {
+                        ?>
+                        <h1>Restaurants in <?= htmlentities($_POST['selectedTag']) ?></h1>
+                        <section class="border">
+                            <div class="restaurant">
+                                <h2><?= htmlentities($tag['restaurant_name']) ?></h2>
+                                <div id="rating-stars-container">
+                                    <?php if ($roundedById[$tag['restaurant_id'] -1] === 0) { ?>
+                                        <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                    <?php } else {?>
+                                        <div class="rating-stars" style="background-color: black; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
+                                    <?php } ?>
+                                    <div class="rating-stars-div"></div>
+                                    <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
+                                </div>
+                                <p><?= htmlentities($tag['adress']) ?></p>
+                            <div class="link">
+                                <a href="restaurantdetails.php?restaurant_id=<?= $tag['restaurant_id'] ?>">Meer informatie</a>
+                            </div>
+                            <button class="button" data-id=<?=$tag['restaurant_id']?>>Favoriet</button>
+                        </div>
+                    </section>
+
+                    <?php
+                }
+            }
+                elseif (isset($_POST['selectedCity']) && !empty($_POST['selectedCity'])) {
                     $selectedCity = $_POST['selectedCity'];
                     if ($selectedCity == $restaurant['city']) {
                         ?>
                         <h1>Restaurants in <?= htmlentities($_POST['selectedCity']) ?></h1>
                         <section class="border">
                             <div class="restaurant">
-                                <h2><?= htmlentities($restaurant['name']) ?></h2>
+                                <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
                                 <div id="rating-stars-container">
                                     <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
                                         <div class="rating-stars" style="background-color: #fff4e3; height: 10vh; width: <?= ($roundedById[$restaurant['restaurant_id'] - 1] * 1.96) * 10 ?>%;"></div>
@@ -122,19 +196,22 @@ mysqli_close($db);
                                     <img src="img/sterren.png" class="rating-stars-image" alt="sterren-rating">
                                 </div>
                                 <p><?= htmlentities($restaurant['adress']) ?></p>
-                            <div class="link">
-                                <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                                <div class="link">
+                                    <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
+                                </div>
+                                <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
                             </div>
-                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
-                        </div>
-                    </section>
-                    <?php
+                        </section>
+
+                        <?php
+                    }
+
                 }
-            } else {
+                else {
                 ?>
                 <section class="border">
                     <div class="restaurant">
-                        <h2><?= htmlentities($restaurant['name']) ?></h2>
+                        <h2><?= htmlentities($restaurant['restaurant_name']) ?></h2>
                         <p><?= htmlentities($restaurant['adress']) ?>, <?= htmlentities($restaurant['city']) ?></p>
                         <div id="rating-stars-container">
                             <?php if ($roundedById[$restaurant['restaurant_id'] -1] === 0) { ?>
@@ -147,7 +224,6 @@ mysqli_close($db);
                         </div>
                         <div class="link">
                             <a href="restaurantdetails.php?restaurant_id=<?= $restaurant['restaurant_id'] ?>">Meer informatie</a>
-                            <button class="button" data-id=<?=$restaurant['restaurant_id']?>>Favorite</button>
                         </div>
                         <button class="fav-button" data-id=<?=$restaurant['restaurant_id']?>>Favoriet</button>
                     </div>
