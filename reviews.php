@@ -160,6 +160,7 @@ mysqli_close($db)
 </section> -->
     <footer>
         <img class="logo" src="./img/restoramalogo.png" alt="Restorama logo">
+        <a href="api.php" class="api">naar de google api!!</a>
     </footer>
     <dialog id="modal">
         <div id="modal-content">
@@ -169,6 +170,7 @@ mysqli_close($db)
             </div>
             <a href="index.php">Homepagina</a>
             <a href="eduplaza.html">EduPlaza</a>
+            <a href="favourites.html">Favorieten</a>
             <button id="close">Terug</button>
         </div>
     </dialog>

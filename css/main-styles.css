@@ -115,6 +115,16 @@ footer {
     padding: 0.1vh;
     border-top: solid 0.3vh #bda786;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.api {
+    color: #170a00;
+    text-decoration: none;
 }
 
 /*

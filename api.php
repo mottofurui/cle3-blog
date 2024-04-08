@@ -165,6 +165,7 @@ mysqli_close($db);
             </div>
             <a href="index.php">Homepagina</a>
             <a href="eduplaza.html">EduPlaza</a>
+            <a href="favourites.html">Favorieten</a>
             <button id="close">Terug</button>
         </div>
     </dialog>

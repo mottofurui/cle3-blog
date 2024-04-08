@@ -3,7 +3,7 @@ $host       = "stud.hosted.hr.nl";
 $user       = "1066431";
 $password   = "queifede";
 $database   = "1066431";
-
+//
 //$host       = "localhost";
 //$user       = "root";
 //$password   = "";
